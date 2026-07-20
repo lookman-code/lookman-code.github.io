@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vortex Token — Next-Gen Decentralized Finance Utility Token</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05050f;
+      --panel: #0d0d1f;
+      --primary: #8b5cf6;
+      --primary-glow: rgba(139,92,246,0.25);
+      --secondary: #d946ef;
+      --white: #ffffff;
+      --text-muted: #94a3b8;
+      --border: rgba(255,255,255,0.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', sans-serif; }
+    body {
+      background-color: var(--bg);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    h1, h2, h3, .title-font { font-family: 'Space Grotesk', sans-serif; }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(5, 5, 15, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .logo span { color: var(--primary); }
+    nav ul { display: flex; gap: 32px; list-style: none; }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--primary); }
+    .btn-presale {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 15px var(--primary-glow);
+      transition: transform 0.3s;
+    }
+    .btn-presale:hover { transform: translateY(-2px); }
+
+    /* HERO & PRESALE WIDGET */
+    .hero-section {
+      padding: 180px 40px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .hero-text h1 span {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-text p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+    .hero-btns { display: flex; gap: 20px; }
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.03); }
+
+    .widget-box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .widget-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; text-align: center; }
+    .progress-bar-wrap {
+      background: rgba(255,255,255,0.05);
+      height: 12px;
+      border-radius: 10px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      width: 73%;
+      border-radius: 10px;
+    }
+    .progress-labels { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); }
+    
+    /* TOKENOMICS Grid */
+    .tokenomics-section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+    }
+    .section-title { text-align: center; margin-bottom: 60px; font-size: 2.2rem; }
+    .section-title span { color: var(--primary); }
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .token-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+    }
+    .token-card h4 { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 8px; }
+    .token-card .value { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--secondary); }
+
+    /* FOOTER */
+    footer {
+      background: var(--panel);
+      padding: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    footer p { font-size: 0.85rem; color: var(--text-muted); }
+    footer a { color: var(--primary); text-decoration: none; }
+
+    @media (max-width: 992px) {
+      .hero-section { grid-template-columns: 1fr; padding-top: 140px; text-align: center; gap: 40px; }
+      .hero-text p { margin: 0 auto 30px; }
+      .hero-btns { justify-content: center; }
+      .token-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">Vortex<span>Token</span></a>
+    <nav>
+      <ul>
+        <li><a href="#fitur">Teknologi</a></li>
+        <li><a href="#tokenomics">Tokenomics</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#">Whitepaper</a></li>
+      </ul>
+    </nav>
+    <div class="header-btns">
+      <a href="https://wa.me/6285712225565?text=Saya%20tertarik%20dengan%20Website%20Token%20Crypto%20Vortex" target="_blank" class="btn-presale">Beli Token</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-text">
+      <div class="btn-outline" style="display:inline-block; font-size:0.8rem; padding:4px 16px; margin-bottom:20px; border-color:var(--primary); color:var(--primary);">Token Presale Sedang Berlangsung</div>
+      <h1>Masa Depan DeFi Bersama <span>Vortex Token</span></h1>
+      <p>Token utilitas multi-chain generasi terbaru yang dirancang untuk mendukung ekosistem finansial terdesentralisasi yang cepat, aman, dan berbiaya rendah.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/6285712225565?text=Saya%20ingin%20membuat%20website%20Token%20Crypto%20seperti%20Vortex" target="_blank" class="btn-presale" style="padding:14px 32px; border-radius:8px;">Beli Sekarang</a>
+        <a href="#" class="btn-outline" style="border-radius:8px;">Unduh Whitepaper</a>
+      </div>
+    </div>
+
+    <!-- WIDGET -->
+    <div class="widget-box">
+      <div class="widget-title">Alokasi Presale Publik</div>
+      <div style="font-size:2rem; font-weight:800; text-align:center; color:var(--secondary); margin-bottom:10px;">1 VRX = Rp 150</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar"></div>
+      </div>
+      <div class="progress-labels">
+        <span>Terkumpul: 7,300,000 VRX</span>
+        <span>Target: 10,000,000 VRX</span>
+      </div>
+      <a href="https://wa.me/6285712225565?text=Saya%20ingin%20booking%20Presale%20Token%20Vortex" target="_blank" class="btn-exchange-action" style="display:block; text-align:center; background:linear-gradient(to right, var(--primary), var(--secondary)); color:white;">Beli dengan USDT/BNB</a>
+    </div>
+  </section>
+
+  <!-- TOKENOMICS -->
+  <section class="tokenomics-section" id="tokenomics">
+    <h2 class="section-title">Struktur <span>Tokenomics</span></h2>
+    <div class="token-grid">
+      <div class="token-card">
+        <h4>Total Supply</h4>
+        <div class="value">1 Milyar</div>
+      </div>
+      <div class="token-card">
+        <h4>Nama Token</h4>
+        <div class="value">Vortex</div>
+      </div>
+      <div class="token-card">
+        <h4>Simbol Token</h4>
+        <div class="value">VRX</div>
+      </div>
+      <div class="token-card">
+        <h4>Jaringan</h4>
+        <div class="value">BSC (BEP20)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Vortex Token. All rights reserved. | Design by <a href="../index.html">LukmanHakim JasaWeb</a></p>
+    <p><a href="mailto:info@vortextoken.io">info@vortextoken.io</a></p>
+  </footer>
+
+</body>
+</html>
