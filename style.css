@@ -370,8 +370,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-visual {
   position: absolute;
   right: 0;
-  top: 46%; /* Shifted from 50% to be higher */
-  transform: translateY(-50%);
+  top: 36%; /* Raised from 46% to align the top of the photo with 'Wujudkan Website Impian' */
+  transform: translateY(-40%);
   width: 540px; /* Increased from 500px to make it even larger */
   padding-right: 80px;
   padding-left: 20px;
