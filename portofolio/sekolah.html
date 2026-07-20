@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMA Negeri 1 Harapan Bangsa â€“ Prestasi, Iman, dan Ketaqwaan</title>
+  <meta name="description" content="Website resmi SMAN 1 Harapan Bangsa. Pusat informasi akademik, kesiswaan, PPDB, dan prestasi sekolah terakreditasi A.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #0f4c81;
+      --primary-dark: #0a3356;
+      --accent: #f5a623;
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --muted: #64748b;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,76,129,0.96); backdrop-filter: blur(10px);
+      padding: 0 6%; display: flex; align-items: center; justify-content: space-between;
+      height: 70px; border-bottom: 3px solid var(--accent);
+    }
+    .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.3rem; color: #fff; text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { background: var(--accent); color: #fff; padding: 9px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: background .2s; }
+    .nav-cta:hover { background: #e09216; }
+
+    .hero {
+      position: relative; min-height: 80vh;
+      background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center;
+    }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(15,76,129,0.92) 40%, rgba(15,76,129,0.4) 100%); }
+    .hero-content { position: relative; z-index: 1; padding: 0 8%; max-width: 700px; color: #fff; }
+    .hero-tag { display: inline-block; background: rgba(245,166,35,0.2); border: 1px solid var(--accent); color: var(--accent); padding: 5px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; font-family: 'Outfit', sans-serif; }
+    .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .hero h1 em { color: var(--accent); font-style: normal; }
+    .hero p { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 32px; max-width: 540px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-blue { background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; font-family: 'Outfit', sans-serif; font-size: 0.95rem; transition: all .2s; }
+    .btn-blue:hover { background: #e09216; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,166,37,0.3); }
+    .btn-outline { border: 2px solid rgba(255,255,255,0.5); color: #fff; padding: 13px 26px; border-radius: 10px; text-decoration: none; font-weight: 600; font-family: 'Outfit', sans-serif; transition: all .2s; }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+    section { padding: 80px 6%; }
+    .section-header { text-align: center; margin-bottom: 52px; }
+    .section-tag { display: inline-block; background: rgba(15,76,129,0.1); color: var(--primary); border: 1px solid rgba(15,76,129,0.2); padding: 5px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-bottom: 10px; font-family: 'Outfit', sans-serif; }
+    .section-title { font-family: 'Outfit', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+    .section-sub { color: var(--muted); font-size: 0.95rem; max-width: 500px; margin: 0 auto; }
+
+    /* STATS */
+    .stats-bg { background: #fff; border-bottom: 1px solid #e2e8f0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    .stat-card { padding: 10px; }
+    .stat-card h3 { font-family: 'Outfit', sans-serif; font-size: 2.6rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
+    .stat-card p { color: var(--muted); font-size: 0.88rem; font-weight: 500; }
+
+    /* INFO & BERITA */
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .news-card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid #e2e8f0; transition: transform .2s, box-shadow .2s; }
+    .news-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(15,76,129,0.08); }
+    .news-card img { width: 100%; height: 200px; object-fit: cover; }
+    .news-content { padding: 22px; }
+    .news-date { font-size: 0.78rem; color: var(--muted); font-weight: 600; margin-bottom: 8px; text-transform: uppercase; }
+    .news-title { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; line-height: 1.4; }
+    .news-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
+    .news-link { color: var(--primary); text-decoration: none; font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+    .news-link:hover { color: var(--primary-dark); }
+
+    /* PENDAFTARAN (PPDB) FORM */
+    .ppdb-bg { background: linear-gradient(135deg, var(--primary-dark), #091b2c); color: #fff; }
+    .ppdb-bg .section-title { color: #fff; }
+    .ppdb-bg .section-sub { color: rgba(255,255,255,0.6); }
+    .ppdb-wrap { max-width: 600px; margin: 0 auto; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 40px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 10px;
+      color: #fff; font-size: 0.9rem; font-family: 'Inter', sans-serif; transition: border-color .2s;
+    }
+    .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+    .form-group select option { background: #0a3356; color: #fff; }
+    .btn-form { width: 100%; background: var(--accent); color: #fff; border: none; padding: 15px; border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all .2s; }
+    .btn-form:hover { background: #e09216; transform: translateY(-2px); }
+
+    footer { background: #051421; color: rgba(255,255,255,0.5); text-align: center; padding: 30px; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.07); }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      section { padding: 60px 5%; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .news-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">SMAN 1 <span>Harapan Bangsa</span></a>
+  <ul class="nav-links">
+    <li><a href="#akademik">Akademik</a></li>
+    <li><a href="#berita">Berita</a></li>
+    <li><a href="#ppdb">PPDB Online</a></li>
+  </ul>
+  <a href="#ppdb" class="nav-cta">Daftar PPDB</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Akreditasi A (Sangat Memuaskan)</div>
+    <h1>Membentuk Generasi Unggul, <em>Berprestasi</em> & Berakhlak Mulia</h1>
+    <p>Selamat datang di SMAN 1 Harapan Bangsa. Kami berkomitmen menyelenggarakan pendidikan berkualitas tinggi berbasis teknologi, imtaq, dan iptek.</p>
+    <div class="hero-btns">
+      <a href="#ppdb" class="btn-blue">Penerimaan Siswa Baru</a>
+      <a href="#berita" class="btn-outline">Info & Pengumuman</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats-bg">
+  <div class="stats-grid">
+    <div class="stat-card"><h3>95%</h3><p>Lulus PTN Favorit</p></div>
+    <div class="stat-card"><h3>1.240</h3><p>Siswa Aktif</p></div>
+    <div class="stat-card"><h3>48</h3><p>Guru & Staff Profesional</p></div>
+    <div class="stat-card"><h3>32</h3><p>Ekstrakurikuler Aktif</p></div>
+  </div>
+</section>
+
+<section id="berita">
+  <div class="section-header">
+    <span class="section-tag">Berita & Informasi</span>
+    <h2 class="section-title">Kegiatan & Berita Sekolah</h2>
+    <p class="section-sub">Informasi terbaru seputar agenda, prestasi, dan kegiatan SMAN 1 Harapan Bangsa.</p>
+  </div>
+  <div class="news-grid">
+    <div class="news-card">
+      <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&q=80" alt="Siswa Berprestasi">
+      <div class="news-content">
+        <div class="news-date">24 Mar 2024</div>
+        <div class="news-title">Siswa SMAN 1 Harapan Bangsa Juara 1 Olimpiade Fisika Tingkat Provinsi</div>
+        <p class="news-desc">Prestasi membanggakan kembali diukir oleh Ananda Rizky Pratama kelas XI MIPA 1 dalam ajang KSN Provinsi.</p>
+        <a href="https://wa.me/6285712225565?text=Saya%20ingin%20tahu%20tentang%20berita%20juara%20olimpiade" target="_blank" class="news-link">Baca Selengkapnya &rarr;</a>
+      </div>
+    </div>
+    <div class="news-card">
+      <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&q=80" alt="Laboratorium Sekolah">
+      <div class="news-content">
+        <div class="news-date">18 Mar 2024</div>
+        <div class="news-title">Peresmian Laboratorium Komputer Modern Berbasis AI & Multimedia</div>
+        <p class="news-desc">Sekolah terus berkomitmen memfasilitasi siswa dengan fasilitas penunjang IT modern untuk ujian mandiri.</p>
+        <a href="https://wa.me/6285712225565?text=Saya%20ingin%20tahu%20tentang%20fasilitas%20lab%20komputer" target="_blank" class="news-link">Baca Selengkapnya &rarr;</a>
+      </div>
+    </div>
+    <div class="news-card">
+      <img src="https://images.unsplash.com/photo-1511629091441-ee46146481b6?w=400&q=80" alt="PPDB 2024">
+      <div class="news-content">
+        <div class="news-date">10 Mar 2024</div>
+        <div class="news-title">Alur & Syarat Pendaftaran PPDB Tahun Ajaran 2024/2025</div>
+        <p class="news-desc">Panduan lengkap mengenai tata cara pendaftaran calon siswa baru jalur zonasi, prestasi, dan afirmasi.</p>
+        <a href="#ppdb" class="news-link">Baca Selengkapnya &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ppdb" class="ppdb-bg">
+  <div class="section-header">
+    <span class="section-tag" style="background:rgba(245,166,35,0.2);border-color:var(--accent)">PPDB Online</span>
+    <h2 class="section-title">Formulir Pra-Pendaftaran Siswa Baru</h2>
+    <p class="section-sub">Daftarkan diri Anda secara online untuk mendapatkan jadwal verifikasi berkas di sekolah.</p>
+  </div>
+  <div class="ppdb-wrap">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nama Calon Siswa</label>
+        <input type="text" id="ppdb-nama" placeholder="Budi Santoso">
+      </div>
+      <div class="form-group">
+        <label>NISN</label>
+        <input type="text" id="ppdb-nisn" placeholder="007xxxxxxx">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Sekolah Asal (SMP)</label>
+        <input type="text" id="ppdb-asal" placeholder="SMP Negeri 1">
+      </div>
+      <div class="form-group">
+        <label>No. HP Orang Tua / WA</label>
+        <input type="tel" id="ppdb-wa" placeholder="0812 xxxx xxxx">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Jalur Pendaftaran</label>
+      <select id="ppdb-jalur">
+        <option>Pilih jalur...</option>
+        <option>Jalur Zonasi</option>
+        <option>Jalur Prestasi Akademik / Non-Akademik</option>
+        <option>Jalur Afirmasi (Keluarga Kurang Mampu)</option>
+        <option>Jalur Perpindahan Tugas Orang Tua</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Alamat Lengkap</label>
+      <textarea id="ppdb-alamat" rows="3" placeholder="Alamat sesuai Kartu Keluarga (KK)..."></textarea>
+    </div>
+    <button class="btn-form" onclick="kirimPPDB()">Kirim Formulir via WhatsApp</button>
+  </div>
+</section>
+
+<footer>
+  <p>Â© 2024 SMAN 1 Harapan Bangsa. Hak Cipta Dilindungi. | Website dibuat oleh <a href="../index.html">LukmanHakim JasaWeb</a></p>
+</footer>
+
+<script>
+function kirimPPDB() {
+  const nama = document.getElementById('ppdb-nama').value || 'Calon Siswa';
+  const nisn = document.getElementById('ppdb-nisn').value;
+  const asal = document.getElementById('ppdb-asal').value;
+  const jalur = document.getElementById('ppdb-jalur').value;
+  const alamat = document.getElementById('ppdb-alamat').value;
+  const msg = `Halo Panitia PPDB SMAN 1 Harapan Bangsa,
+
+Saya ingin mengajukan pra-pendaftaran:
+
+Nama: ${nama}
+NISN: ${nisn}
+Sekolah Asal: ${asal}
+Jalur: ${jalur}
+Alamat: ${alamat}
+
+Mohon informasi verifikasi selanjutnya. Terima kasih.`;
+  window.open('https://wa.me/6285712225565?text=' + encodeURIComponent(msg), '_blank');
+}
+</script>
+</body>
+</html>

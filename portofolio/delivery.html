@@ -1,0 +1,993 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KirimCepat - Jasa Kurir & Pesan Antar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a6b3c;
+            --primary-light: #249151;
+            --primary-dark: #124d2b;
+            --accent: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f3f4f6;
+            --white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6, .brand-font {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(26, 107, 60, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 107, 60, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 1. Sticky Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            padding: 16px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* 2. Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1526367790999-0150786686a2?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            padding-top: 80px; /* Offset for header */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(18, 77, 43, 0.9), rgba(26, 107, 60, 0.7));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+        }
+
+        /* 3. Stats Row */
+        .stats {
+            background: var(--white);
+            padding: 60px 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* 4. Layanan */
+        .layanan {
+            padding: 100px 0;
+            background: var(--bg-light);
+        }
+
+        .layanan-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(26, 107, 60, 0.1);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(26, 107, 60, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+            color: var(--primary);
+        }
+
+        .card-icon svg {
+            width: 35px;
+            height: 35px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            color: var(--text-light);
+        }
+
+        /* Sections Layout */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 100px 0;
+            align-items: flex-start;
+        }
+
+        /* 5. Form Order */
+        .order-form-wrapper {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background: #f9fafb;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* 6. Estimasi Tarif */
+        .estimasi-wrapper {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            border-radius: 20px;
+            padding: 40px;
+            color: var(--white);
+            box-shadow: 0 15px 40px rgba(26, 107, 60, 0.2);
+        }
+
+        .estimasi-wrapper h3 {
+            font-size: 2rem;
+            margin-bottom: 24px;
+        }
+
+        .estimasi-wrapper .form-control {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+        }
+
+        .estimasi-wrapper .form-control::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .estimasi-wrapper .form-control:focus {
+            border-color: var(--white);
+        }
+
+        #hasilEstimasi {
+            margin-top: 24px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: none;
+        }
+
+        #hasilEstimasi h4 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        /* 7. Timeline */
+        .timeline-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 1;
+        }
+
+        .timeline-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 200px;
+        }
+
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px auto;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: all 0.3s;
+            box-shadow: 0 0 0 5px var(--white);
+        }
+        
+        .timeline-step:hover .step-circle {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .timeline-step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-step p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* 8. Lacak Paket */
+        .track-section {
+            padding: 100px 0;
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .track-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .track-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .track-result {
+            display: none;
+            text-align: left;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .track-status {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .status-badge {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .route {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .route-point h5 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .route-point p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            width: 0;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 9. Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0 24px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about p {
+            color: #9ca3af;
+            margin-top: 16px;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .layanan-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .split-section {
+                grid-template-columns: 1fr;
+            }
+            .timeline {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            .timeline::before {
+                left: 50%;
+                top: 0;
+                width: 2px;
+                height: 100%;
+            }
+            .timeline-step {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            nav ul {
+                display: none;
+            }
+            .layanan-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .track-input-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Sticky Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="3" width="15" height="13"></rect>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+                KirimCepat
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#layanan">Layanan</a></li>
+                    <li><a href="#tarif">Tarif</a></li>
+                    <li><a href="#lacak">Lacak Paket</a></li>
+                    <li><a href="#order" class="btn btn-primary" style="padding: 8px 20px; color: white;">Order Sekarang</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>Pengiriman Cepat, Aman & Terpercaya ke Seluruh Indonesia</h1>
+                <p>Solusi logistik modern untuk kebutuhan personal dan bisnis Anda. Jangkauan luas, harga transparan, dan layanan prioritas.</p>
+                <div class="hero-btns">
+                    <a href="#order" class="btn btn-primary">Order Sekarang</a>
+                    <a href="#lacak" class="btn btn-outline">Lacak Paket</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Stats Row -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in-up">
+                    <h3 class="brand-font">10.000+</h3>
+                    <p>Paket Terkirim</p>
+                </div>
+                <div class="stat-item fade-in-up" style="transition-delay: 0.1s;">
+                    <h3 class="brand-font">98%</h3>
+                    <p>On-Time</p>
+                </div>
+                <div class="stat-item fade-in-up" style="transition-delay: 0.2s;">
+                    <h3 class="brand-font">50+</h3>
+                    <p>Kota Terjangkau</p>
+                </div>
+                <div class="stat-item fade-in-up" style="transition-delay: 0.3s;">
+                    <h3 class="brand-font">24/7</h3>
+                    <p>Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Layanan -->
+    <section id="layanan" class="layanan">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Layanan Kami</h2>
+            <p class="section-subtitle fade-in-up">Pilihan layanan pengiriman yang disesuaikan dengan kebutuhan kecepatan dan keamanan paket Anda.</p>
+            
+            <div class="layanan-grid">
+                <div class="card fade-in-up">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Same Day Delivery</h3>
+                    <p>Paket sampai di hari yang sama. Cocok untuk dokumen penting dan barang mendesak.</p>
+                </div>
+                <div class="card fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                            <line x1="2" y1="10" x2="22" y2="10"></line>
+                        </svg>
+                    </div>
+                    <h3>COD Tersedia</h3>
+                    <p>Beli barang lebih aman dengan sistem bayar di tempat saat barang tiba di tujuan.</p>
+                </div>
+                <div class="card fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Asuransi Paket</h3>
+                    <p>Perlindungan penuh untuk nilai barang Anda jika terjadi kehilangan atau kerusakan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Split Section: Order Form & Estimasi -->
+    <section id="order" class="container split-section">
+        <!-- 5. Form Order -->
+        <div class="order-form-wrapper fade-in-up">
+            <h3 class="brand-font" style="font-size: 2rem; margin-bottom: 24px; color: var(--primary-dark);">Order Kurir</h3>
+            <form id="formOrder">
+                <div class="form-group">
+                    <label class="form-label">Nama Pengirim</label>
+                    <input type="text" id="nama" class="form-control" required placeholder="Masukkan nama Anda">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">No. HP / WhatsApp</label>
+                    <input type="tel" id="nohp" class="form-control" required placeholder="Contoh: 08123456789">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Alamat Pickup</label>
+                    <textarea id="alamatPickup" class="form-control" required placeholder="Alamat lengkap pengambilan barang"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Alamat Tujuan</label>
+                    <textarea id="alamatTujuan" class="form-control" required placeholder="Alamat lengkap penerima"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Jenis Barang</label>
+                    <select id="jenisBarang" class="form-control" required>
+                        <option value="">Pilih Jenis Barang</option>
+                        <option value="Dokumen">Dokumen</option>
+                        <option value="Paket Kecil">Paket Kecil</option>
+                        <option value="Paket Besar">Paket Besar</option>
+                        <option value="Elektronik">Elektronik</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Berat Estimasi (Kg)</label>
+                    <input type="number" id="beratEstimasi" class="form-control" required min="1" placeholder="Contoh: 2">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Catatan Tambahan</label>
+                    <textarea id="catatan" class="form-control" placeholder="Instruksi khusus..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; margin-top: 10px;">Order via WhatsApp</button>
+            </form>
+        </div>
+
+        <!-- 6. Estimasi Tarif -->
+        <div id="tarif" class="estimasi-wrapper fade-in-up" style="transition-delay: 0.2s;">
+            <h3 class="brand-font">Cek Estimasi Tarif</h3>
+            <p style="margin-bottom: 24px; opacity: 0.9;">Hitung perkiraan biaya pengiriman Anda dengan cepat.</p>
+            
+            <div class="form-group">
+                <label class="form-label" style="color: white;">Kota Asal</label>
+                <input type="text" id="kotaAsal" class="form-control" placeholder="Contoh: Jakarta">
+            </div>
+            <div class="form-group">
+                <label class="form-label" style="color: white;">Kota Tujuan</label>
+                <input type="text" id="kotaTujuan" class="form-control" placeholder="Contoh: Bandung">
+            </div>
+            <div class="form-group">
+                <label class="form-label" style="color: white;">Berat (Kg)</label>
+                <input type="number" id="beratTarif" class="form-control" min="1" placeholder="1">
+            </div>
+            <button type="button" class="btn btn-outline" style="width: 100%; margin-top: 10px;" onclick="hitungTarif()">Hitung Tarif</button>
+
+            <div id="hasilEstimasi">
+                <p>Estimasi Biaya Pengiriman:</p>
+                <h4 id="hargaEstimasi" class="brand-font">Rp 0</h4>
+                <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 8px;">*Harga riil mungkin berbeda tergantung lokasi spesifik.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Cara Kerja Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Cara Kerja</h2>
+            <p class="section-subtitle fade-in-up">Proses pengiriman mudah dan transparan dari awal hingga akhir.</p>
+
+            <div class="timeline fade-in-up">
+                <div class="timeline-step">
+                    <div class="step-circle">1</div>
+                    <h4 class="brand-font">Pesan Online</h4>
+                    <p>Isi form order dan konfirmasi pesanan via WhatsApp.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-circle">2</div>
+                    <h4 class="brand-font">Pickup Dijemput</h4>
+                    <p>Kurir kami akan menjemput paket ke lokasi Anda.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-circle">3</div>
+                    <h4 class="brand-font">Dalam Pengiriman</h4>
+                    <p>Paket diproses dan dikirim menuju kota tujuan.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-circle">4</div>
+                    <h4 class="brand-font">Paket Tiba</h4>
+                    <p>Penerima menerima paket dengan aman dan selamat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Lacak Paket -->
+    <section id="lacak" class="track-section">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Lacak Paket Anda</h2>
+            <p class="section-subtitle fade-in-up">Masukkan nomor resi untuk mengetahui status pengiriman terkini.</p>
+
+            <div class="track-box fade-in-up">
+                <div class="track-input-group">
+                    <input type="text" id="resiInput" class="form-control" placeholder="Masukkan Nomor Resi (cth: KC892374)" style="flex: 1;">
+                    <button type="button" class="btn btn-primary" onclick="lacakPaket()">Lacak</button>
+                </div>
+
+                <div id="trackResult" class="track-result">
+                    <div class="track-status">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <h4 class="brand-font">Status: <span class="status-badge">Dalam Pengiriman</span></h4>
+                    </div>
+                    
+                    <div class="route">
+                        <div class="route-point">
+                            <h5 class="brand-font">Jakarta</h5>
+                            <p>Origin</p>
+                        </div>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                        <div class="route-point" style="text-align: right;">
+                            <h5 class="brand-font">Surabaya</h5>
+                            <p>Destination</p>
+                        </div>
+                    </div>
+
+                    <div class="progress-container">
+                        <div id="trackProgressBar" class="progress-bar"></div>
+                    </div>
+                    <p style="text-align: center; font-size: 0.9rem; color: var(--text-light); margin-top: 8px;">Estimasi Tiba: <strong>Besok, 14:00 WIB</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="#" class="logo">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                        KirimCepat
+                    </a>
+                    <p>Mitra logistik terpercaya Anda. Menghubungkan kebaikan dan peluang melalui layanan pengiriman terbaik ke seluruh pelosok negeri.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Bantuan</h4>
+                    <ul>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Klaim Asuransi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 KirimCepat. All rights reserved. | Design by <a href="../index.html">LukmanHakim JasaWeb</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        // Form Order Submit -> WhatsApp
+        document.getElementById('formOrder').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nama = document.getElementById('nama').value;
+            const nohp = document.getElementById('nohp').value;
+            const asal = document.getElementById('alamatPickup').value;
+            const tujuan = document.getElementById('alamatTujuan').value;
+            const jenis = document.getElementById('jenisBarang').value;
+            const berat = document.getElementById('beratEstimasi').value;
+            const catatan = document.getElementById('catatan').value;
+
+            const message = `*ORDER BARU KIRIMCEPAT*%0A%0A*Nama:* ${nama}%0A*No HP:* ${nohp}%0A*Pickup:* ${asal}%0A*Tujuan:* ${tujuan}%0A*Jenis Barang:* ${jenis}%0A*Berat:* ${berat} Kg%0A*Catatan:* ${catatan}%0A%0AMohon segera diproses. Terima kasih!`;
+            
+            const waUrl = `https://wa.me/6285712225565?text=${message}`;
+            window.open(waUrl, '_blank');
+        });
+
+        // Hitung Tarif
+        function hitungTarif() {
+            const asal = document.getElementById('kotaAsal').value;
+            const tujuan = document.getElementById('kotaTujuan').value;
+            let berat = document.getElementById('beratTarif').value;
+            
+            if (!asal || !tujuan || !berat) {
+                alert("Harap isi kota asal, tujuan, dan berat.");
+                return;
+            }
+            
+            berat = parseFloat(berat);
+            const randomAdd = Math.floor(Math.random() * (20000 - 5000 + 1)) + 5000;
+            const harga = (berat * 15000) + randomAdd;
+            
+            // Format Rupiah
+            const formatted = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(harga);
+            
+            document.getElementById('hargaEstimasi').textContent = formatted;
+            document.getElementById('hasilEstimasi').style.display = 'block';
+        }
+
+        // Lacak Paket
+        function lacakPaket() {
+            const resi = document.getElementById('resiInput').value;
+            if (!resi) {
+                alert("Masukkan nomor resi terlebih dahulu.");
+                return;
+            }
+
+            const resultDiv = document.getElementById('trackResult');
+            const progressBar = document.getElementById('trackProgressBar');
+            
+            resultDiv.style.display = 'block';
+            progressBar.style.width = '0';
+            
+            // Animate progress bar to 65%
+            setTimeout(() => {
+                progressBar.style.width = '65%';
+            }, 100);
+        }
+    </script>
+</body>
+</html>

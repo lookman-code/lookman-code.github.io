@@ -1,0 +1,770 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Maju Bersama Teknologi - Solusi Teknologi Digital Terdepan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a1628;
+            --navy-light: #112240;
+            --blue: #00b4d8;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--navy);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--white);
+        }
+        .section-title span {
+            color: var(--blue);
+        }
+        .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background-color: var(--blue);
+            color: var(--navy);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.4);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: 2px solid var(--blue);
+            color: var(--blue);
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background-color: rgba(0, 180, 216, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--blue), #03045e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 22, 40, 0.85), rgba(10, 22, 40, 0.95)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(to right, var(--white), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .stat-card {
+            background: var(--navy-light);
+            padding: 32px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(0,180,216,0.1);
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0,180,216,0.3);
+        }
+        .stat-num {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Layanan */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--navy-light);
+            padding: 40px 30px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--blue);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 180, 216, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--blue);
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--white);
+        }
+        .service-card p {
+            color: var(--text-muted);
+        }
+
+        /* Portofolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .portfolio-card {
+            background: var(--navy-light);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+        }
+        .portfolio-img {
+            height: 200px;
+            background: linear-gradient(135deg, #1e293b, var(--navy));
+            position: relative;
+        }
+        .portfolio-content {
+            padding: 30px;
+        }
+        .portfolio-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+        .portfolio-content p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: rgba(0, 180, 216, 0.1);
+            color: var(--blue);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Tim Ahli */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .team-card {
+            background: var(--navy-light);
+            padding: 40px 20px;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--blue), #03045e);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        .team-card h3 {
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+        .team-card h4 {
+            color: var(--blue);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .team-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Konsultasi */
+        .contact-section {
+            background: var(--navy-light);
+            border-radius: 24px;
+            padding: 60px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+        .form-control {
+            width: 100%;
+            background: rgba(10, 22, 40, 0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 16px;
+            color: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        .submit-btn {
+            width: 100%;
+            font-size: 1.1rem;
+            padding: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy-light);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        .footer-col p {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+        }
+        .footer-bottom a {
+            color: var(--blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <div class="logo-circle">M</div>
+                PT Maju Bersama Teknologi
+            </div>
+            <nav class="nav-links">
+                <a href="#beranda">Beranda</a>
+                <a href="#tentang">Tentang</a>
+                <a href="#layanan">Layanan</a>
+                <a href="#portofolio">Portofolio</a>
+                <a href="#tim">Tim</a>
+                <a href="#konsultasi" class="btn btn-primary" style="padding: 8px 20px; color: var(--navy);">Konsultasi</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="beranda" class="hero">
+        <div class="container hero-content">
+            <h1>Solusi Teknologi Digital Terdepan untuk Bisnis Anda</h1>
+            <p>Kami membantu transformasi digital perusahaan Anda melalui pengembangan perangkat lunak, sistem terintegrasi, dan solusi cloud dengan keamanan tingkat tinggi.</p>
+            <div class="hero-btns">
+                <a href="#konsultasi" class="btn btn-primary">Mulai Proyek</a>
+                <a href="#portofolio" class="btn btn-outline">Lihat Portofolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="tentang" class="py-20">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>Inovasi Tanpa Henti Sejak 2016</h2>
+                <p>PT Maju Bersama Teknologi didirikan dengan visi untuk menjadi mitra transformasi digital terpercaya bagi berbagai sektor industri di Indonesia. Kami menggabungkan keahlian teknis dengan pemahaman mendalam tentang proses bisnis.</p>
+                <p>Misi kami adalah menghadirkan solusi IT yang tidak hanya inovatif, tetapi juga scalable dan aman, guna mendorong pertumbuhan efisiensi dan keunggulan kompetitif klien kami di era digital.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-num" data-target="8">0</div>
+                    <div class="stat-label">Tahun Pengalaman</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" data-target="200">0</div>
+                    <div class="stat-label">Proyek Selesai</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" data-target="50">0</div>
+                    <div class="stat-label">Klien Korporat</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" data-target="98">0</div>
+                    <div class="stat-label">% Kepuasan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Layanan -->
+    <section id="layanan" class="py-20" style="background-color: var(--navy-light);">
+        <div class="container">
+            <h2 class="section-title">Layanan <span>Unggulan Kami</span></h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3>Pengembangan Web</h3>
+                    <p>Pembuatan website korporat dan web application yang responsif, cepat, dan scalable dengan teknologi terkini.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                    </div>
+                    <h3>Mobile App</h3>
+                    <p>Aplikasi native dan cross-platform untuk iOS & Android yang menghadirkan pengalaman pengguna terbaik.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                    </div>
+                    <h3>Sistem ERP</h3>
+                    <p>Integrasi seluruh proses bisnis perusahaan dalam satu sistem terpusat yang efisien dan akurat.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    </div>
+                    <h3>Konsultasi IT</h3>
+                    <p>Layanan konsultasi strategis untuk membantu perencanaan dan implementasi infrastruktur IT perusahaan.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+                    </div>
+                    <h3>Cloud Solution</h3>
+                    <p>Migrasi dan manajemen arsitektur cloud untuk skalabilitas tinggi, keandalan, dan efisiensi biaya.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>Keamanan Siber</h3>
+                    <p>Perlindungan data dan infrastruktur dari ancaman siber dengan audit dan implementasi security standar industri.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portofolio -->
+    <section id="portofolio" class="py-20">
+        <div class="container">
+            <h2 class="section-title">Karya <span>Terbaik Kami</span></h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-img"></div>
+                    <div class="portfolio-content">
+                        <h3>Sistem ERP Manufaktur</h3>
+                        <p>Platform enterprise untuk manajemen rantai pasok, produksi, dan inventaris terpadu bagi perusahaan manufaktur nasional.</p>
+                        <div class="tags">
+                            <span class="tag">Laravel</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Vue.js</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-img"></div>
+                    <div class="portfolio-content">
+                        <h3>Mobile App Logistik</h3>
+                        <p>Aplikasi pelacakan pengiriman real-time dan manajemen armada untuk perusahaan logistik terbesar di Indonesia.</p>
+                        <div class="tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-img"></div>
+                    <div class="portfolio-content">
+                        <h3>Platform E-Commerce B2B</h3>
+                        <p>Marketplace khusus transaksi B2B (Business to Business) dengan fitur tender, negosiasi, dan pembayaran multi-termin.</p>
+                        <div class="tags">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tim -->
+    <section id="tim" class="py-20" style="background-color: var(--navy-light);">
+        <div class="container">
+            <h2 class="section-title">Tim <span>Ahli Kami</span></h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">AF</div>
+                    <h3>Ahmad Fauzi</h3>
+                    <h4>CEO & Founder</h4>
+                    <p>10+ tahun pengalaman di industri IT. Memimpin visi dan strategi perusahaan.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">SR</div>
+                    <h3>Siti Rahayu</h3>
+                    <h4>CTO</h4>
+                    <p>Pakar arsitektur sistem dan cloud computing. Penggerak inovasi teknologi.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">BS</div>
+                    <h3>Budi Santoso</h3>
+                    <h4>Lead Developer</h4>
+                    <p>Spesialis pengembangan backend yang efisien, aman, dan scalable.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">DP</div>
+                    <h3>Diana Putri</h3>
+                    <h4>UI/UX Designer</h4>
+                    <p>Pencipta antarmuka pengguna yang intuitif, estetis, dan modern.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Konsultasi -->
+    <section id="konsultasi" class="py-20">
+        <div class="container">
+            <h2 class="section-title">Mulai <span>Transformasi Anda</span></h2>
+            <div class="contact-section">
+                <form id="waForm" onsubmit="submitToWa(event)">
+                    <div class="form-group">
+                        <label class="form-label">Nama Perusahaan</label>
+                        <input type="text" id="perusahaan" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nama PIC</label>
+                        <input type="text" id="nama" class="form-control" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">No. HP / WhatsApp</label>
+                            <input type="tel" id="hp" class="form-control" required>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                        <div class="form-group">
+                            <label class="form-label">Jenis Layanan</label>
+                            <select id="layanan_pilih" class="form-control" required>
+                                <option value="">Pilih Layanan</option>
+                                <option value="Pengembangan Web">Pengembangan Web</option>
+                                <option value="Mobile App">Mobile App</option>
+                                <option value="Sistem ERP">Sistem ERP</option>
+                                <option value="Konsultasi IT">Konsultasi IT</option>
+                                <option value="Cloud Solution">Cloud Solution</option>
+                                <option value="Keamanan Siber">Keamanan Siber</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Budget Range</label>
+                            <select id="budget" class="form-control" required>
+                                <option value="">Pilih Estimasi</option>
+                                <option value="< 50 Juta">< 50 Juta</option>
+                                <option value="50 - 200 Juta">50 - 200 Juta</option>
+                                <option value="200 - 500 Juta">200 - 500 Juta</option>
+                                <option value="> 500 Juta">> 500 Juta</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Deskripsi Kebutuhan</label>
+                        <textarea id="deskripsi" class="form-control" placeholder="Ceritakan secara singkat tentang proyek atau masalah yang ingin diselesaikan..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn">Kirim via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>PT Maju Bersama Teknologi</h3>
+                    <p>Jl. Sudirman No. 123, SCBD</p>
+                    <p>Jakarta Selatan, Indonesia 12190</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Kontak</h3>
+                    <p>Telepon: +62 857-1222-5565</p>
+                    <p>Email: hello@majubersama.tech</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PT Maju Bersama Teknologi. All rights reserved.</p>
+                <p style="margin-top: 10px;">Dibuat dengan &hearts; oleh <a href="../index.html">LukmanHakim JasaWeb</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Count Up Animation
+        const counters = document.querySelectorAll('.stat-num');
+        const speed = 200; 
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText.replace('+', '').replace('%', '');
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        let text = Math.ceil(count + inc);
+                        if(counter.getAttribute('data-target') === '98') {
+                            counter.innerText = text + '%';
+                        } else {
+                            counter.innerText = text + '+';
+                        }
+                        setTimeout(updateCount, 10);
+                    } else {
+                        if(target === 98) {
+                            counter.innerText = target + '%';
+                        } else {
+                            counter.innerText = target + '+';
+                        }
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Observer for scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateCounters();
+                observer.disconnect();
+            }
+        });
+        observer.observe(document.querySelector('.stats-grid'));
+
+        // Form Submission to WhatsApp
+        function submitToWa(e) {
+            e.preventDefault();
+            
+            const perusahaan = document.getElementById('perusahaan').value;
+            const nama = document.getElementById('nama').value;
+            const email = document.getElementById('email').value;
+            const hp = document.getElementById('hp').value;
+            const layanan = document.getElementById('layanan_pilih').value;
+            const budget = document.getElementById('budget').value;
+            const deskripsi = document.getElementById('deskripsi').value;
+
+            const text = \`Halo PT Maju Bersama Teknologi, saya ingin berkonsultasi mengenai proyek IT.
+
+*Detail Perusahaan:*
+- Nama Perusahaan: \${perusahaan}
+- Nama PIC: \${nama}
+- Email: \${email}
+- No. HP: \${hp}
+
+*Detail Kebutuhan:*
+- Jenis Layanan: \${layanan}
+- Range Budget: \${budget}
+- Deskripsi: \${deskripsi}
+
+Mohon informasi lebih lanjut. Terima kasih.\`;
+
+            const waUrl = \`https://wa.me/6285712225565?text=\${encodeURIComponent(text)}\`;
+            window.open(waUrl, '_blank');
+        }
+    </script>
+</body>
+</html>

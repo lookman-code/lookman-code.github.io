@@ -1,0 +1,750 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowSkin Serum - Kulit Cerah Bersinar dalam 14 Hari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #c2185b;
+            --pink-light: #fce4ec;
+            --pink-hover: #ad1457;
+            --cream: #fffdfa;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --white: #ffffff;
+            --gold: #ffd700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-main);
+        }
+
+        /* Pulse Animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(194, 24, 91, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(194, 24, 91, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(194, 24, 91, 0); }
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: var(--pink);
+            color: var(--white);
+            animation: pulse 2s infinite;
+        }
+        .btn-primary:hover {
+            background-color: var(--pink-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--pink);
+        }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--pink);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=1600&q=80') center/cover;
+            padding-top: 70px;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to right, rgba(255, 253, 250, 0.95) 40%, rgba(255, 253, 250, 0.4) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: var(--pink);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+        .price-area {
+            margin-bottom: 30px;
+        }
+        .price-strike {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-right: 15px;
+        }
+        .price-now {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--pink);
+        }
+        
+        /* Countdown */
+        .countdown-wrapper {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        .countdown {
+            display: flex;
+            gap: 15px;
+            text-align: center;
+        }
+        .cd-box {
+            background: var(--pink-light);
+            color: var(--pink);
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 70px;
+        }
+        .cd-num {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: block;
+        }
+        .cd-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Manfaat */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .benefit-item {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+        .benefit-item:hover {
+            transform: translateY(-5px);
+        }
+        .benefit-icon {
+            color: var(--pink);
+            flex-shrink: 0;
+        }
+        .benefit-item h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Cara Penggunaan */
+        .steps-container {
+            background: var(--pink-light);
+            border-radius: 24px;
+            padding: 60px;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .step-num {
+            width: 60px;
+            height: 60px;
+            background: var(--pink);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        /* Testimoni */
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testi-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .testi-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .testi-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--pink), #ff8a65);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .stars {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        .verified {
+            color: #4caf50;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Pembelian */
+        .buy-section {
+            background: var(--white);
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(194, 24, 91, 0.08);
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        .product-img-box {
+            flex: 1;
+            height: 300px;
+            background: linear-gradient(135deg, var(--pink-light), #fff);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-img-box::after {
+            content: "GlowSkin Serum 30ml";
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--pink);
+            font-weight: 700;
+        }
+        .buy-details {
+            flex: 1;
+        }
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: var(--white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .qty-btn:hover {
+            border-color: var(--pink);
+            color: var(--pink);
+        }
+        .qty-input {
+            width: 50px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+        }
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--pink);
+            margin-bottom: 20px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-muted);
+        }
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-overlay {
+                background: linear-gradient(to bottom, rgba(255, 253, 250, 0.95) 60%, rgba(255, 253, 250, 0.6) 100%);
+            }
+            .buy-section {
+                flex-direction: column;
+            }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">GlowSkin.</div>
+            <nav class="nav-links">
+                <a href="#manfaat">Manfaat</a>
+                <a href="#carapakai">Cara Pakai</a>
+                <a href="#testimoni">Testimoni</a>
+                <a href="#beli" class="btn btn-primary" style="padding: 8px 24px; animation: none;">Beli Sekarang</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <span class="badge">DISKON 40% - TERBATAS!</span>
+            <h1>Kulit Cerah Bersinar dalam 14 Hari atau Uang Kembali</h1>
+            <div class="price-area">
+                <span class="price-strike">Rp 350.000</span>
+                <span class="price-now">Rp 210.000</span>
+            </div>
+            
+            <div class="countdown-wrapper">
+                <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; color: var(--text-muted);">PROMO BERAKHIR DALAM:</div>
+                <div class="countdown" id="countdown">
+                    <div class="cd-box"><span class="cd-num" id="cd-days">03</span><span class="cd-label">Hari</span></div>
+                    <div class="cd-box"><span class="cd-num" id="cd-hours">12</span><span class="cd-label">Jam</span></div>
+                    <div class="cd-box"><span class="cd-num" id="cd-minutes">00</span><span class="cd-label">Menit</span></div>
+                    <div class="cd-box"><span class="cd-num" id="cd-seconds">00</span><span class="cd-label">Detik</span></div>
+                </div>
+            </div>
+
+            <div>
+                <a href="#beli" class="btn btn-primary" style="font-size: 1.1rem;">Pesan Sekarang - Bayar di Tempat</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manfaat -->
+    <section id="manfaat" class="py-20">
+        <div class="container">
+            <h2 class="section-title text-center">Kenapa Anda Membutuhkan GlowSkin?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h4>Mencerahkan Kulit Secara Alami</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h4>Anti Penuaan Dini</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h4>Melembabkan 24 Jam</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h4>Menyamarkan Bekas Jerawat</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h4>Perlindungan SPF 30</h4>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h4>Formula Hyaluronic Acid</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cara Penggunaan -->
+    <section id="carapakai" class="py-20" style="background-color: var(--white);">
+        <div class="container">
+            <div class="steps-container">
+                <h2 class="section-title text-center">Cara Penggunaan yang Tepat</h2>
+                <div class="steps-grid">
+                    <div>
+                        <div class="step-num">1</div>
+                        <h4>Cuci Muka</h4>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Bersihkan wajah dengan sabun cuci muka andalan Anda.</p>
+                    </div>
+                    <div>
+                        <div class="step-num">2</div>
+                        <h4>Oleskan Serum</h4>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Teteskan 2-3 tetes serum pada telapak tangan.</p>
+                    </div>
+                    <div>
+                        <div class="step-num">3</div>
+                        <h4>Pijat Lembut</h4>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Aplikasikan merata ke wajah dan leher sambil dipijat.</p>
+                    </div>
+                    <div>
+                        <div class="step-num">4</div>
+                        <h4>Diamkan</h4>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Tunggu beberapa saat hingga serum meresap sempurna.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section id="testimoni" class="py-20">
+        <div class="container">
+            <h2 class="section-title text-center">Apa Kata Mereka?</h2>
+            <div class="testi-grid">
+                <div class="testi-card">
+                    <div class="testi-header">
+                        <div class="testi-avatar">S</div>
+                        <div>
+                            <h4>Siti Rahayu</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Jakarta</span>
+                            <div class="verified">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                Pembeli Terverifikasi
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"Awalnya ragu, tapi setelah coba rutin 2 minggu, bekas jerawat beneran memudar. Teksturnya ringan dan cepat meresap!"</p>
+                </div>
+                <div class="testi-card">
+                    <div class="testi-header">
+                        <div class="testi-avatar">D</div>
+                        <div>
+                            <h4>Dewi Kusuma</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Surabaya</span>
+                            <div class="verified">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                Pembeli Terverifikasi
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"Kulitku cenderung kering, semenjak pakai GlowSkin wajah jadi lembab seharian dan terlihat lebih glowing dari biasanya. Suka banget!"</p>
+                </div>
+                <div class="testi-card">
+                    <div class="testi-header">
+                        <div class="testi-avatar">R</div>
+                        <div>
+                            <h4>Rahma Andini</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Bandung</span>
+                            <div class="verified">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                Pembeli Terverifikasi
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"Harga affordable banget buat kualitas sebagus ini. Botol kedua nih, dan temen-temen banyak yang notice kulitku makin cerah."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pembelian -->
+    <section id="beli" class="py-20" style="background-color: var(--white);">
+        <div class="container">
+            <h2 class="section-title text-center">Pesan Sekarang & Dapatkan Diskon</h2>
+            <div class="buy-section">
+                <div class="product-img-box"></div>
+                <div class="buy-details">
+                    <h3>GlowSkin Brightening Serum</h3>
+                    <p style="color: var(--text-muted); margin: 10px 0;">Ukuran 30ml | BPOM Approved</p>
+                    
+                    <div class="qty-controls">
+                        <span style="font-weight: 600;">Jumlah:</span>
+                        <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                        <input type="text" id="qty" class="qty-input" value="1" readonly>
+                        <button class="qty-btn" onclick="updateQty(1)">+</button>
+                    </div>
+
+                    <div class="total-price" id="totalPrice">Total: Rp 210.000</div>
+                    
+                    <button onclick="beliWhatsApp()" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; border-radius: 8px;">
+                        Beli via WhatsApp
+                    </button>
+                    <p style="text-align: center; font-size: 0.85rem; margin-top: 15px; color: var(--text-muted);">Pembayaran aman. Tersedia sistem COD (Bayar di Tempat).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title text-center">Pertanyaan yang Sering Diajukan</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Apakah aman untuk kulit sensitif? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">Ya, GlowSkin diformulasikan khusus dengan bahan alami dan hypoallergenic yang aman digunakan untuk semua jenis kulit, termasuk kulit sensitif.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Berapa lama hasilnya terlihat? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">Berdasarkan uji klinis, hasil kulit yang lebih lembab terasa sejak pemakaian pertama. Perubahan warna kulit dan menyamarkan noda biasanya terlihat dalam 14-28 hari pemakaian rutin.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Apakah sudah terdaftar BPOM? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">Tentu saja. GlowSkin sudah lulus uji dan terdaftar resmi di BPOM sehingga sangat aman untuk digunakan harian.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Apakah bisa digunakan dengan produk skincare lain? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">Sangat bisa. Kami merekomendasikan penggunaan GlowSkin setelah toner dan sebelum pelembab (moisturizer). Hindari mencampur dengan bahan aktif yang sangat kuat di waktu bersamaan jika kulit Anda sensitif.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Bagaimana sistem pengirimannya? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">Kami melayani pengiriman ke seluruh Indonesia dengan berbagai kurir. Tersedia juga layanan Cash on Delivery (COD) atau bayar di tempat.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-20 text-center" style="background: var(--pink-light);">
+        <div class="container">
+            <h2 class="serif" style="font-size: 2.5rem; margin-bottom: 20px;">Jangan Lewatkan Kesempatan Ini!</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1rem;">Promo diskon 40% segera berakhir.</p>
+            <a href="#beli" class="btn btn-primary" style="font-size: 1.2rem; padding: 16px 40px;">Amankan Promo Saya Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--pink); margin-bottom: 15px;">GlowSkin.</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Rahasia Kulit Cerah Bersinar Wanita Indonesia</p>
+            <p style="font-size: 0.85rem; color: #999;">&copy; 2026 GlowSkin Official. All rights reserved.</p>
+            <p style="font-size: 0.85rem; margin-top: 10px;">Dibuat dengan &hearts; oleh <a href="../index.html" style="color: var(--pink); font-weight: 500;">LukmanHakim JasaWeb</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer (3 days, 12 hours from load)
+        let countDownDate = new Date().getTime() + (3.5 * 24 * 60 * 60 * 1000);
+
+        const cdInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("cd-days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("cd-hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("cd-minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("cd-seconds").innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(cdInterval);
+                document.getElementById("countdown").innerHTML = "<span style='font-weight: 700; color: var(--pink);'>PROMO BERAKHIR</span>";
+            }
+        }, 1000);
+
+        // Qty & Price Calculation
+        const pricePerUnit = 210000;
+        let qty = 1;
+
+        function updateQty(change) {
+            qty += change;
+            if (qty < 1) qty = 1;
+            
+            document.getElementById("qty").value = qty;
+            
+            const total = qty * pricePerUnit;
+            document.getElementById("totalPrice").innerText = "Total: Rp " + total.toLocaleString('id-ID');
+        }
+
+        // WhatsApp Purchase
+        function beliWhatsApp() {
+            const text = \`Halo Admin GlowSkin, saya tertarik ingin memesan produk:
+
+Produk: GlowSkin Brightening Serum (30ml)
+Jumlah: \${qty} botol
+Total Harga: Rp \${(qty * pricePerUnit).toLocaleString('id-ID')}
+
+Mohon informasi untuk proses pembayaran dan pengiriman. Terima kasih.\`;
+
+            const waUrl = \`https://wa.me/6285712225565?text=\${encodeURIComponent(text)}\`;
+            window.open(waUrl, '_blank');
+        }
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all
+                faqItems.forEach(i => i.classList.remove('active'));
+                
+                // Open clicked if was not active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

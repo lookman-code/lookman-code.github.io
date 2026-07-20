@@ -1,0 +1,823 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiPay - Sistem Pembayaran Iuran Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0d0d0d;
+            --bg-card: #1a1a2e;
+            --bg-header: #0d0d0d;
+            --accent: #7b1a1a;
+            --accent-glow: rgba(123, 26, 26, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 1. Sticky Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 13, 13, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-left: 4px;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        /* 2. Hero */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(13,13,13,0.95), rgba(13,13,13,0.8));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .btn-accent:hover {
+            background: #901f1f;
+            box-shadow: 0 0 30px rgba(123, 26, 26, 0.7);
+            transform: translateY(-2px);
+        }
+
+        /* 3. Stats */
+        .stats-section {
+            padding: 80px 0;
+            background: var(--bg-dark);
+            position: relative;
+            z-index: 10;
+            margin-top: -50px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--accent-glow);
+            border-color: var(--accent);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .stat-card p {
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        /* Layout Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 0 100px 0;
+            align-items: start;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 24px;
+        }
+
+        /* 4. Dashboard Preview (Bar Chart) */
+        .chart-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 250px;
+            padding-bottom: 30px;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 40px;
+        }
+
+        .bar {
+            width: 100%;
+            background: var(--accent);
+            border-radius: 4px 4px 0 0;
+            transition: height 1s ease-out;
+            box-shadow: 0 0 15px var(--accent-glow);
+            height: 0; /* Animated via JS */
+        }
+
+        .bar-label {
+            margin-top: 12px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* 5. Form Simulasi */
+        .form-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 14px;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(123, 26, 26, 0.2);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2394a3b8%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px top 50%;
+            background-size: 12px auto;
+        }
+
+        /* 7. Riwayat Pembayaran */
+        .history-section {
+            padding: 60px 0 100px 0;
+        }
+
+        .table-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 16px 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: rgba(0,0,0,0.2);
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        td {
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        /* 6. Modal Struk */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 400px;
+            padding: 32px;
+            box-shadow: 0 0 40px rgba(123, 26, 26, 0.15);
+            position: relative;
+        }
+
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 24px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 20px;
+        }
+        
+        .receipt-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .receipt-row.total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .modal-actions {
+            margin-top: 32px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        /* 8. Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Animations & Utils */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 992px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+            .table-container { overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Header -->
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                SiPay <div class="logo-dot"></div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#tagihan">Tagihan</a></li>
+                    <li><a href="#riwayat">Riwayat</a></li>
+                    <li><a href="#">Bantuan</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Kelola Iuran Warga Lebih Mudah, Transparan & Aman</h1>
+                <p>Sistem digital untuk pencatatan, pembayaran, dan pelaporan iuran RT/RW yang terintegrasi langsung dengan WhatsApp.</p>
+                <a href="#bayar" class="btn btn-accent">Bayar Iuran Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <h3>Rp <span class="counter" data-target="24750000">0</span></h3>
+                    <p>Terkumpul Bulan Ini</p>
+                </div>
+                <div class="stat-card fade-in" style="transition-delay: 0.1s">
+                    <h3 class="counter" data-target="147">0</h3>
+                    <p>Warga Sudah Bayar</p>
+                </div>
+                <div class="stat-card fade-in" style="transition-delay: 0.2s">
+                    <h3 style="color: var(--accent)" class="counter" data-target="23">0</h3>
+                    <p>Warga Belum Bayar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid Layout -->
+    <section class="container dashboard-grid" id="dashboard">
+        
+        <!-- 4. Dashboard Chart -->
+        <div class="chart-panel fade-in">
+            <div class="chart-header">
+                <h3 class="section-title" style="margin:0;">Statistik Iuran</h3>
+                <span style="color:var(--text-muted)">Tahun 2025</span>
+            </div>
+            <div class="chart-container">
+                <!-- Bar heights proportional, simulated via inline style for final height, set to 0 initially -->
+                <div class="bar-wrapper">
+                    <div class="bar anim-bar" data-height="65%"></div>
+                    <span class="bar-label">Jan</span>
+                </div>
+                <div class="bar-wrapper">
+                    <div class="bar anim-bar" data-height="85%"></div>
+                    <span class="bar-label">Feb</span>
+                </div>
+                <div class="bar-wrapper">
+                    <div class="bar anim-bar" data-height="75%"></div>
+                    <span class="bar-label">Mar</span>
+                </div>
+                <div class="bar-wrapper">
+                    <div class="bar anim-bar" data-height="90%"></div>
+                    <span class="bar-label">Apr</span>
+                </div>
+                <div class="bar-wrapper">
+                    <div class="bar anim-bar" data-height="100%"></div>
+                    <span class="bar-label">Mei</span>
+                </div>
+                <div class="bar-wrapper">
+                    <div class="bar anim-bar" data-height="85%"></div>
+                    <span class="bar-label">Jun</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Form Simulasi Pembayaran -->
+        <div class="form-panel fade-in" id="bayar" style="transition-delay: 0.2s">
+            <h3 class="section-title">Form Pembayaran</h3>
+            <form id="formBayar">
+                <div class="form-group">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" id="nama" class="form-control" required placeholder="Nama Sesuai KTP">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nomor KK (16 Digit)</label>
+                    <input type="text" id="nokk" class="form-control" required pattern="\d{16}" placeholder="317xxxxxxxxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">RT/RW</label>
+                    <input type="text" id="rtrw" class="form-control" required placeholder="001/005">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Bulan Iuran</label>
+                    <select id="bulan" class="form-control" required>
+                        <option value="Januari 2025">Januari 2025</option>
+                        <option value="Februari 2025">Februari 2025</option>
+                        <option value="Maret 2025">Maret 2025</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Jenis Iuran</label>
+                    <select id="jenis" class="form-control" required onchange="calcNominal()">
+                        <option value="">Pilih Jenis Iuran</option>
+                        <option value="Kebersihan" data-price="15000">Kebersihan - Rp 15.000</option>
+                        <option value="Keamanan" data-price="20000">Keamanan - Rp 20.000</option>
+                        <option value="Sosial" data-price="10000">Sosial - Rp 10.000</option>
+                        <option value="Bulanan (Paket)" data-price="50000">Paket Bulanan - Rp 50.000</option>
+                    </select>
+                </div>
+                <input type="hidden" id="nominalVal" value="0">
+                <button type="submit" class="btn btn-accent" style="width: 100%; margin-top: 10px;">Proses Pembayaran</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 7. Riwayat Pembayaran -->
+    <section class="container history-section fade-in" id="riwayat">
+        <h3 class="section-title">Riwayat Pembayaran Terbaru</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama Warga</th>
+                        <th>RT/RW</th>
+                        <th>Bulan</th>
+                        <th>Jenis Iuran</th>
+                        <th>Nominal</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Budi Santoso</td>
+                        <td>002/005</td>
+                        <td>Maret 2025</td>
+                        <td>Bulanan (Paket)</td>
+                        <td>Rp 50.000</td>
+                        <td><span class="badge-success">LUNAS</span></td>
+                    </tr>
+                    <tr>
+                        <td>Siti Aminah</td>
+                        <td>001/005</td>
+                        <td>Maret 2025</td>
+                        <td>Kebersihan</td>
+                        <td>Rp 15.000</td>
+                        <td><span class="badge-success">LUNAS</span></td>
+                    </tr>
+                    <tr>
+                        <td>Ahmad Fauzi</td>
+                        <td>003/005</td>
+                        <td>Februari 2025</td>
+                        <td>Bulanan (Paket)</td>
+                        <td>Rp 50.000</td>
+                        <td><span class="badge-success">LUNAS</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dewi Lestari</td>
+                        <td>002/005</td>
+                        <td>Maret 2025</td>
+                        <td>Keamanan</td>
+                        <td>Rp 20.000</td>
+                        <td><span class="badge-success">LUNAS</span></td>
+                    </tr>
+                    <tr>
+                        <td>Hendra Gunawan</td>
+                        <td>004/005</td>
+                        <td>Januari 2025</td>
+                        <td>Bulanan (Paket)</td>
+                        <td>Rp 50.000</td>
+                        <td><span class="badge-success">LUNAS</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 8. Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SiPay. Platform Iuran Digital.</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">Design by <a href="../index.html">LukmanHakim JasaWeb</a></p>
+        </div>
+    </footer>
+
+    <!-- 6. Modal Struk -->
+    <div class="modal-overlay" id="receiptModal">
+        <div class="modal-content">
+            <div class="receipt-header">
+                <h3 class="brand-font">SiPay</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">Struk Pembayaran Digital</p>
+            </div>
+            
+            <div class="receipt-row">
+                <span style="color: var(--text-muted)">No. Ref:</span>
+                <span id="r_ref"></span>
+            </div>
+            <div class="receipt-row">
+                <span style="color: var(--text-muted)">Tanggal:</span>
+                <span id="r_date"></span>
+            </div>
+            <br>
+            <div class="receipt-row">
+                <span style="color: var(--text-muted)">Nama:</span>
+                <span id="r_nama"></span>
+            </div>
+            <div class="receipt-row">
+                <span style="color: var(--text-muted)">RT/RW:</span>
+                <span id="r_rtrw"></span>
+            </div>
+            <div class="receipt-row">
+                <span style="color: var(--text-muted)">Bulan:</span>
+                <span id="r_bulan"></span>
+            </div>
+            <div class="receipt-row">
+                <span style="color: var(--text-muted)">Jenis:</span>
+                <span id="r_jenis"></span>
+            </div>
+            <div class="receipt-row">
+                <span style="color: var(--text-muted)">Status:</span>
+                <span class="badge-success">LUNAS</span>
+            </div>
+            
+            <div class="receipt-row total">
+                <span>Total:</span>
+                <span id="r_nominal"></span>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-outline" style="flex: 1; padding: 12px;" onclick="closeModal()">Tutup</button>
+                <button class="btn btn-accent" style="flex: 2; padding: 12px;" onclick="sendWa()">Kirim via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Set nominal value based on selection
+        function calcNominal() {
+            const select = document.getElementById('jenis');
+            const price = select.options[select.selectedIndex].getAttribute('data-price');
+            document.getElementById('nominalVal').value = price || 0;
+        }
+
+        // Form Submit -> Show Modal
+        document.getElementById('formBayar').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nama = document.getElementById('nama').value;
+            const rtrw = document.getElementById('rtrw').value;
+            const bulan = document.getElementById('bulan').value;
+            const jenisEl = document.getElementById('jenis');
+            const jenis = jenisEl.options[jenisEl.selectedIndex].text;
+            const nominal = document.getElementById('nominalVal').value;
+
+            if(!nominal || nominal == 0) {
+                alert("Pilih jenis iuran terlebih dahulu.");
+                return;
+            }
+
+            // Fill receipt
+            document.getElementById('r_ref').textContent = 'SPY' + Math.floor(Math.random() * 900000 + 100000);
+            
+            const today = new Date();
+            const dateStr = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
+            document.getElementById('r_date').textContent = dateStr;
+            
+            document.getElementById('r_nama').textContent = nama;
+            document.getElementById('r_rtrw').textContent = rtrw;
+            document.getElementById('r_bulan').textContent = bulan;
+            document.getElementById('r_jenis').textContent = jenis.split(' - ')[0];
+            
+            const formattedPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(nominal);
+            document.getElementById('r_nominal').textContent = formattedPrice;
+
+            // Show Modal
+            document.getElementById('receiptModal').style.display = 'flex';
+        });
+
+        function closeModal() {
+            document.getElementById('receiptModal').style.display = 'none';
+        }
+
+        function sendWa() {
+            const ref = document.getElementById('r_ref').textContent;
+            const nama = document.getElementById('r_nama').textContent;
+            const rtrw = document.getElementById('r_rtrw').textContent;
+            const bulan = document.getElementById('r_bulan').textContent;
+            const jenis = document.getElementById('r_jenis').textContent;
+            const nominal = document.getElementById('r_nominal').textContent;
+
+            const message = `*KONFIRMASI PEMBAYARAN IURAN SiPay*%0A%0A*No Ref:* ${ref}%0A*Nama:* ${nama}%0A*RT/RW:* ${rtrw}%0A*Bulan:* ${bulan}%0A*Jenis:* ${jenis}%0A*Total:* ${nominal}%0A*Status:* LUNAS%0A%0ATerima kasih telah melakukan pembayaran tepat waktu.`;
+            
+            window.open(`https://wa.me/6285712225565?text=${message}`, '_blank');
+        }
+
+        // Intersecion Observer for Animations (Fade in, Counters, Bars)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Trigger Counters
+                    if (entry.target.classList.contains('stats-section')) {
+                        const counters = document.querySelectorAll('.counter');
+                        counters.forEach(counter => {
+                            const target = +counter.getAttribute('data-target');
+                            const duration = 2000;
+                            const step = target / (duration / 16); // 60fps
+                            
+                            let current = 0;
+                            const updateCounter = () => {
+                                current += step;
+                                if (current < target) {
+                                    counter.innerText = Math.ceil(current).toLocaleString('id-ID');
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    counter.innerText = target.toLocaleString('id-ID');
+                                }
+                            };
+                            updateCounter();
+                        });
+                        // Unobserve after running once
+                        observer.unobserve(entry.target);
+                    }
+
+                    // Trigger Chart Bars
+                    if (entry.target.classList.contains('chart-panel')) {
+                        const bars = document.querySelectorAll('.anim-bar');
+                        bars.forEach((bar, index) => {
+                            setTimeout(() => {
+                                bar.style.height = bar.getAttribute('data-height');
+                            }, index * 150);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.fade-in, .stats-section, .chart-panel').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

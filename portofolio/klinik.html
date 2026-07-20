@@ -1,0 +1,900 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klinik Sehat Mandiri</title>
+    <meta name="description" content="Kesehatan Anda, Prioritas Kami. Layanan kesehatan profesional dari Klinik Sehat Mandiri.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-teal: #00838f;
+            --primary-teal-light: #00acc1;
+            --primary-teal-dark: #005662;
+            --bg-white: #ffffff;
+            --bg-light: #f5f8f9;
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+            --font-main: 'Outfit', sans-serif;
+            --border-color: #e0e6ed;
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 30px rgba(0, 131, 143, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-teal-dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .top-bar span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .top-bar svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary-teal);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-teal);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary-teal);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-teal);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            height: 80vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, rgba(0, 131, 143, 0.85), rgba(0, 131, 143, 0.4)), url('https://images.unsplash.com/photo-1631217872822-4d1e2a89394b?w=1600&q=80') center/cover no-repeat;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-main);
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-teal);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-teal-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-teal);
+        }
+
+        /* Section Global */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary-teal-dark);
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Layanan */
+        .layanan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .layanan-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .layanan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-teal-light);
+        }
+
+        .layanan-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 131, 143, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .layanan-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--primary-teal);
+        }
+
+        .layanan-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .layanan-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .jam-op {
+            display: inline-block;
+            background: var(--bg-light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-teal-dark);
+            font-weight: 500;
+        }
+
+        /* Dokter */
+        .bg-white-section {
+            background: var(--bg-white);
+        }
+
+        .dokter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .dokter-card {
+            background: var(--bg-light);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .dokter-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .dokter-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--primary-teal);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .dokter-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--bg-white);
+            border-radius: 50%;
+            padding: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+        .dokter-badge svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-teal);
+            display: block;
+        }
+
+        .dokter-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .spesialis {
+            color: var(--primary-teal);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .jadwal {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .jadwal svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .btn-dokter {
+            width: 100%;
+            background: white;
+            color: var(--primary-teal);
+            border: 1px solid var(--primary-teal);
+        }
+        .btn-dokter:hover {
+            background: var(--primary-teal);
+            color: white;
+        }
+
+        /* Booking Form */
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid var(--primary-teal);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            background: var(--bg-light);
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-teal);
+            background: var(--bg-white);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            height: 48px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        /* Info & Testimoni */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .info-card {
+            background: var(--primary-teal-dark);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .info-card svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary-teal-light);
+            flex-shrink: 0;
+        }
+
+        .info-card h4 {
+            color: white;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .info-card p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testi-card {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .stars {
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
+        
+        .stars svg { width: 18px; height: 18px; fill: currentColor; }
+
+        .testi-text {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .testi-author {
+            font-weight: 600;
+            color: var(--primary-teal-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-white);
+            padding: 40px 0 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-logo {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .credit {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .credit a {
+            color: var(--primary-teal);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <span>
+                <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                Emergency 24 Jam: 0800-1122-3344
+            </span>
+        </div>
+    </div>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
+                Klinik Sehat Mandiri
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#layanan">Layanan</a></li>
+                    <li><a href="#dokter">Dokter</a></li>
+                    <li><a href="#booking">Booking</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Kesehatan Anda, Prioritas Kami</h1>
+            <p>Memberikan pelayanan medis berkualitas dengan tenaga profesional yang peduli pada kesehatan keluarga Anda. Fasilitas modern dan terpercaya.</p>
+            <a href="#booking" class="btn btn-primary">Booking Online</a>
+            <a href="#dokter" class="btn btn-outline">Lihat Dokter</a>
+        </div>
+    </section>
+
+    <section id="layanan" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Layanan Unggulan</h2>
+                <p>Klinik Sehat Mandiri menyediakan berbagai fasilitas medis lengkap untuk memenuhi kebutuhan kesehatan Anda.</p>
+            </div>
+            
+            <div class="layanan-grid">
+                <div class="layanan-card">
+                    <div class="layanan-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                    </div>
+                    <h3>Poli Umum</h3>
+                    <p>Pemeriksaan kesehatan menyeluruh untuk berbagai keluhan penyakit ringan hingga sedang.</p>
+                    <span class="jam-op">Buka: Setiap Hari</span>
+                </div>
+
+                <div class="layanan-card">
+                    <div class="layanan-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+                    </div>
+                    <h3>Poli Gigi</h3>
+                    <p>Perawatan kesehatan gigi dan mulut profesional oleh dokter spesialis berpengalaman.</p>
+                    <span class="jam-op">Buka: Selasa, Kamis, Sabtu</span>
+                </div>
+
+                <div class="layanan-card">
+                    <div class="layanan-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v4h4v2h-4v4h-2v-4H7v-2h4z"/></svg>
+                    </div>
+                    <h3>Poli Anak</h3>
+                    <p>Pelayanan kesehatan khusus bayi dan anak, imunisasi, dan tumbuh kembang anak.</p>
+                    <span class="jam-op">Buka: Senin - Sabtu</span>
+                </div>
+
+                <div class="layanan-card">
+                    <div class="layanan-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+                    <h3>Poli Kandungan</h3>
+                    <p>Pemeriksaan kehamilan, USG, dan konsultasi kesehatan reproduksi wanita.</p>
+                    <span class="jam-op">Buka: Senin, Rabu, Jumat</span>
+                </div>
+
+                <div class="layanan-card">
+                    <div class="layanan-icon">
+                        <svg viewBox="0 0 24 24"><path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34a.996.996 0 0 0-1.41 0L9 12.25 11.75 15l8.96-8.96a.996.996 0 0 0 0-1.41z"/></svg>
+                    </div>
+                    <h3>Laboratorium</h3>
+                    <p>Fasilitas lab lengkap untuk menunjang diagnosis dan pemantauan kesehatan pasien.</p>
+                    <span class="jam-op">Buka: Setiap Hari</span>
+                </div>
+
+                <div class="layanan-card">
+                    <div class="layanan-icon">
+                        <svg viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+                    </div>
+                    <h3>Fisioterapi</h3>
+                    <p>Rehabilitasi medik untuk pemulihan fungsi tubuh pasca cedera atau penyakit.</p>
+                    <span class="jam-op">Buka: Senin - Jumat</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dokter" class="section bg-white-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tim Dokter Kami</h2>
+                <p>Didukung oleh tenaga medis spesialis yang berpengalaman dan berdedikasi tinggi.</p>
+            </div>
+
+            <div class="dokter-grid">
+                <!-- Dokter 1 -->
+                <div class="dokter-card">
+                    <div class="dokter-avatar">
+                        AR
+                        <div class="dokter-badge">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-4H5v-2h4V6h2v4h4v2h-4v4z"/></svg>
+                        </div>
+                    </div>
+                    <h3>dr. Ahmad Rizki, Sp.PD</h3>
+                    <div class="spesialis">Spesialis Penyakit Dalam</div>
+                    <div class="jadwal">
+                        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        Senin, Rabu, Jumat (08:00 - 14:00)
+                    </div>
+                    <button class="btn btn-dokter" onclick="selectDokter('dr. Ahmad Rizki, Sp.PD')">Booking dengan Dokter Ini</button>
+                </div>
+
+                <!-- Dokter 2 -->
+                <div class="dokter-card">
+                    <div class="dokter-avatar">
+                        SN
+                        <div class="dokter-badge">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-4H5v-2h4V6h2v4h4v2h-4v4z"/></svg>
+                        </div>
+                    </div>
+                    <h3>drg. Siti Nurfadilah</h3>
+                    <div class="spesialis">Spesialis Gigi & Mulut</div>
+                    <div class="jadwal">
+                        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        Selasa, Kamis, Sabtu (09:00 - 15:00)
+                    </div>
+                    <button class="btn btn-dokter" onclick="selectDokter('drg. Siti Nurfadilah')">Booking dengan Dokter Ini</button>
+                </div>
+
+                <!-- Dokter 3 -->
+                <div class="dokter-card">
+                    <div class="dokter-avatar">
+                        BS
+                        <div class="dokter-badge">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-4H5v-2h4V6h2v4h4v2h-4v4z"/></svg>
+                        </div>
+                    </div>
+                    <h3>dr. Budi Santoso, Sp.A</h3>
+                    <div class="spesialis">Spesialis Anak</div>
+                    <div class="jadwal">
+                        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        Senin - Sabtu (16:00 - 20:00)
+                    </div>
+                    <button class="btn btn-dokter" onclick="selectDokter('dr. Budi Santoso, Sp.A')">Booking dengan Dokter Ini</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Booking Online</h2>
+                <p>Jadwalkan kunjungan Anda dengan mudah dan cepat tanpa harus antre lama di klinik.</p>
+            </div>
+
+            <div class="booking-container">
+                <form id="formBooking" onsubmit="submitBooking(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nama Lengkap Pasien</label>
+                            <input type="text" id="nama" class="form-control" required placeholder="Contoh: Budi Santoso">
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal Lahir</label>
+                            <input type="date" id="tglLahir" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor HP (WhatsApp aktif)</label>
+                            <input type="tel" id="noHp" class="form-control" required placeholder="Contoh: 08123456789">
+                        </div>
+                        <div class="form-group">
+                            <label>Jenis Kelamin</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="jk" value="Laki-laki" required> Laki-laki</label>
+                                <label><input type="radio" name="jk" value="Perempuan"> Perempuan</label>
+                            </div>
+                        </div>
+                        <div class="form-group full">
+                            <label>Pilih Dokter</label>
+                            <select id="pilihDokter" class="form-control" required>
+                                <option value="">-- Silakan Pilih Dokter --</option>
+                                <option value="dr. Ahmad Rizki, Sp.PD">dr. Ahmad Rizki, Sp.PD - Penyakit Dalam</option>
+                                <option value="drg. Siti Nurfadilah">drg. Siti Nurfadilah - Gigi & Mulut</option>
+                                <option value="dr. Budi Santoso, Sp.A">dr. Budi Santoso, Sp.A - Spesialis Anak</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal Kunjungan</label>
+                            <input type="date" id="tglKunjungan" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Jam Kunjungan</label>
+                            <select id="jamKunjungan" class="form-control" required>
+                                <option value="">-- Pilih Jam --</option>
+                                <option value="Pagi 08:00 - 12:00">Pagi (08:00 - 12:00)</option>
+                                <option value="Siang 12:00 - 16:00">Siang (12:00 - 16:00)</option>
+                                <option value="Sore 16:00 - 20:00">Sore (16:00 - 20:00)</option>
+                            </select>
+                        </div>
+                        <div class="form-group full">
+                            <label>Keluhan Utama</label>
+                            <textarea id="keluhan" class="form-control" rows="4" required placeholder="Jelaskan keluhan yang Anda rasakan secara singkat..."></textarea>
+                        </div>
+                        <div class="form-group full">
+                            <button type="submit" class="btn btn-primary btn-submit">Kirim Form Booking via WhatsApp</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak" class="section bg-white-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    <div>
+                        <h4>Jam Operasional</h4>
+                        <p>Senin - Sabtu: 08:00 - 21:00<br>UGD / Emergency 24 Jam</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <div>
+                        <h4>Alamat Klinik</h4>
+                        <p>Jl. Kesehatan No. 45<br>Kota Bekasi, Jawa Barat</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                    <div>
+                        <h4>Telp / WhatsApp</h4>
+                        <p><a href="https://wa.me/6285712225565" style="color:white; text-decoration:underline;">+62 857-1222-5565</a><br>Respon Cepat</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Testimoni Pasien</h2>
+                <p>Apa kata mereka yang telah mempercayakan kesehatannya pada kami.</p>
+            </div>
+
+            <div class="testi-grid">
+                <div class="testi-card">
+                    <div class="stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                    <div class="testi-text">"Pelayanan sangat ramah dan dokter menjelaskan kondisi dengan sangat detail. Fasilitas klinik bersih dan nyaman."</div>
+                    <div class="testi-author">- Ibu Rina M.</div>
+                </div>
+                <div class="testi-card">
+                    <div class="stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                    <div class="testi-text">"Sistem booking online sangat membantu. Datang langsung ditangani tanpa harus menunggu berjam-jam seperti di tempat lain."</div>
+                    <div class="testi-author">- Bapak Hendra</div>
+                </div>
+                <div class="testi-card">
+                    <div class="stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                    <div class="testi-text">"Poli anak sangat child-friendly. Dokter Budi sabar sekali menangani anak saya yang takut disuntik. Highly recommended!"</div>
+                    <div class="testi-author">- Ibu Sarah</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="logo footer-logo">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
+                Klinik Sehat Mandiri
+            </div>
+            <p style="color: var(--text-muted);">Melayani dengan Hati, Merawat dengan Ahli.</p>
+            
+            <div class="credit">
+                &copy; 2026 Klinik Sehat Mandiri. Didesain oleh <a href="../index.html">LukmanHakim JasaWeb</a>.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set min date for booking to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('tglKunjungan').setAttribute('min', today);
+
+        // Select Doctor Function
+        function selectDokter(dokterName) {
+            const selectEl = document.getElementById('pilihDokter');
+            for(let i=0; i<selectEl.options.length; i++) {
+                if(selectEl.options[i].value === dokterName) {
+                    selectEl.selectedIndex = i;
+                    break;
+                }
+            }
+            window.location.hash = '#booking';
+        }
+
+        // Form Submit via WhatsApp
+        function submitBooking(e) {
+            e.preventDefault();
+            
+            const nama = document.getElementById('nama').value;
+            const tglLahir = document.getElementById('tglLahir').value;
+            const noHp = document.getElementById('noHp').value;
+            const jk = document.querySelector('input[name="jk"]:checked').value;
+            const dokter = document.getElementById('pilihDokter').value;
+            const tglKunjungan = document.getElementById('tglKunjungan').value;
+            const jamKunjungan = document.getElementById('jamKunjungan').value;
+            const keluhan = document.getElementById('keluhan').value;
+
+            const text = `Halo Klinik Sehat Mandiri, saya ingin melakukan booking konsultasi dengan detail berikut:
+            
+*DATA PASIEN*
+Nama: ${nama}
+Tgl Lahir: ${tglLahir}
+Jenis Kelamin: ${jk}
+No HP: ${noHp}
+
+*JADWAL KUNJUNGAN*
+Dokter: ${dokter}
+Tanggal: ${tglKunjungan}
+Jam: ${jamKunjungan}
+
+*KELUHAN*
+${keluhan}
+
+Mohon konfirmasinya. Terima kasih.`;
+
+            const waUrl = `https://wa.me/6285712225565?text=${encodeURIComponent(text)}`;
+            window.open(waUrl, '_blank');
+        }
+    </script>
+</body>
+</html>

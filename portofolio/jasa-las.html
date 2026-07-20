@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Karya Logam Perkasa â€“ Jasa Las & Fabrikasi Baja Profesional</title>
+  <meta name="description" content="CV Karya Logam Perkasa menyediakan jasa las, fabrikasi baja, kanopi, pagar, dan konstruksi besi berkualitas tinggi dengan pengalaman 15 tahun.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #d4500a;
+      --primary-dark: #a83a04;
+      --secondary: #1a1a1a;
+      --dark: #0d0d0d;
+      --light: #f5f0eb;
+      --text: #2d2d2d;
+      --muted: #777;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--text); }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,13,0.95); backdrop-filter: blur(12px);
+      padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+      height: 68px; border-bottom: 1px solid rgba(212,80,10,0.3);
+    }
+    .nav-logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.3rem; color: #fff; text-decoration: none; }
+    .nav-logo span { color: var(--primary); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta { background: var(--primary); color: #fff; padding: 9px 20px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: background .2s; }
+    .nav-cta:hover { background: var(--primary-dark); }
+
+    /* HERO */
+    .hero {
+      position: relative; min-height: 88vh;
+      background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center;
+    }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.6) 100%); }
+    .hero-content { position: relative; z-index: 1; padding: 0 8%; max-width: 760px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,80,10,0.15); border: 1px solid var(--primary); color: var(--primary); padding: 6px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 600; margin-bottom: 22px; font-family: 'Outfit', sans-serif; }
+    .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 18px; }
+    .hero h1 em { color: var(--primary); font-style: normal; }
+    .hero p { color: rgba(255,255,255,0.75); font-size: 1.1rem; line-height: 1.7; margin-bottom: 36px; max-width: 560px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary { background: var(--primary); color: #fff; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; font-family: 'Outfit', sans-serif; transition: all .2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,80,10,0.4); }
+    .btn-outline { background: transparent; border: 2px solid rgba(255,255,255,0.5); color: #fff; padding: 13px 26px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Outfit', sans-serif; transition: all .2s; }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .hero-stats { display: flex; gap: 36px; margin-top: 52px; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-num { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--primary); }
+    .stat-label { color: rgba(255,255,255,0.6); font-size: 0.82rem; margin-top: 2px; }
+
+    /* SECTION */
+    section { padding: 80px 8%; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-tag { display: inline-block; background: rgba(212,80,10,0.1); color: var(--primary); border: 1px solid rgba(212,80,10,0.3); padding: 5px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; font-family: 'Outfit', sans-serif; margin-bottom: 12px; }
+    .section-title { font-family: 'Outfit', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--secondary); margin-bottom: 12px; }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+    /* SERVICES */
+    .services-bg { background: #fff; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .svc-card { background: var(--light); border-radius: var(--radius); padding: 28px 24px; border: 1px solid #e8e0d8; transition: all .25s; cursor: default; }
+    .svc-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(212,80,10,0.12); border-color: var(--primary); }
+    .svc-icon { width: 52px; height: 52px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .svc-icon svg { width: 26px; height: 26px; fill: #fff; }
+    .svc-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--secondary); }
+    .svc-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+
+    /* WHY US */
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .why-img { border-radius: 16px; overflow: hidden; position: relative; }
+    .why-img img { width: 100%; height: 440px; object-fit: cover; display: block; }
+    .why-img-badge { position: absolute; bottom: 20px; left: 20px; background: var(--primary); color: #fff; padding: 12px 20px; border-radius: 12px; font-family: 'Outfit', sans-serif; font-weight: 700; }
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .why-item { display: flex; gap: 16px; align-items: flex-start; }
+    .why-check { width: 36px; height: 36px; background: rgba(212,80,10,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .why-check svg { width: 18px; height: 18px; stroke: var(--primary); fill: none; stroke-width: 2.5; }
+    .why-item h4 { font-family: 'Outfit', sans-serif; font-weight: 700; margin-bottom: 4px; }
+    .why-item p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+
+    /* GALLERY */
+    .gallery-bg { background: var(--secondary); }
+    .gallery-bg .section-title { color: #fff; }
+    .gallery-bg .section-sub { color: rgba(255,255,255,0.5); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .gal-item { border-radius: 10px; overflow: hidden; aspect-ratio: 4/3; position: relative; }
+    .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; display: block; }
+    .gal-item:hover img { transform: scale(1.06); }
+    .gal-item.wide { grid-column: span 2; }
+
+    /* QUOTE FORM */
+    .form-bg { background: linear-gradient(135deg, var(--secondary), #1a0800); }
+    .form-bg .section-title { color: #fff; }
+    .form-bg .section-sub { color: rgba(255,255,255,0.5); }
+    .form-wrap { max-width: 640px; margin: 0 auto; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 10px;
+      color: #fff; font-size: 0.9rem; font-family: 'Inter', sans-serif;
+      transition: border-color .2s;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
+    .form-group select option { background: #1a1a1a; color: #fff; }
+    .btn-form { width: 100%; background: var(--primary); color: #fff; border: none; padding: 15px; border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .btn-form:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer { background: #080808; color: rgba(255,255,255,0.6); text-align: center; padding: 32px; border-top: 1px solid rgba(255,255,255,0.07); font-size: 0.87rem; }
+    footer a { color: var(--primary); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 4%; }
+      .nav-links { display: none; }
+      section { padding: 60px 5%; }
+      .why-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gal-item.wide { grid-column: span 1; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Karya<span>Logam</span></a>
+  <ul class="nav-links">
+    <li><a href="#layanan">Layanan</a></li>
+    <li><a href="#keunggulan">Keunggulan</a></li>
+    <li><a href="#galeri">Galeri</a></li>
+    <li><a href="#penawaran">Penawaran</a></li>
+  </ul>
+  <a href="https://wa.me/6285712225565?text=Halo,%20saya%20ingin%20konsultasi%20jasa%20las" class="nav-cta" target="_blank">Hubungi Kami</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+      Terpercaya Sejak 2008 â€” 15 Tahun Pengalaman
+    </div>
+    <h1>Jasa Las & Fabrikasi Baja <em>Profesional</em> Berkualitas Tinggi</h1>
+    <p>CV Karya Logam Perkasa hadir sebagai solusi konstruksi besi dan baja terpercaya. Kanopi, pagar, railing, pintu, teralis â€” semua dikerjakan rapi, kuat, dan tepat waktu.</p>
+    <div class="hero-btns">
+      <a href="#penawaran" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        Minta Penawaran Gratis
+      </a>
+      <a href="#galeri" class="btn-outline">Lihat Hasil Kerja</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">1.200+</div><div class="stat-label">Proyek Selesai</div></div>
+      <div class="stat-item"><div class="stat-num">15</div><div class="stat-label">Tahun Berpengalaman</div></div>
+      <div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">Klien Puas</div></div>
+      <div class="stat-item"><div class="stat-num">30</div><div class="stat-label">Tenaga Ahli</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="layanan" class="services-bg">
+  <div class="section-header">
+    <span class="section-tag">Layanan Kami</span>
+    <h2 class="section-title">Apa yang Kami Kerjakan</h2>
+    <p class="section-sub">Kami menangani berbagai proyek fabrikasi logam dari skala rumahan hingga industri besar.</p>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg></div>
+      <h3>Kanopi & Atap Baja</h3>
+      <p>Pemasangan kanopi baja ringan dan WF untuk carport, garasi, dan area parkir komersial.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
+      <h3>Pagar & Railing</h3>
+      <p>Pagar besi tempa, pagar hollow, dan railing tangga dengan desain sesuai permintaan.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 14H8v-2h8v2zm0-4H8v-2h8v2zm0-4H8V6h8v2z"/></svg></div>
+      <h3>Pintu & Teralis Besi</h3>
+      <p>Pintu besi lipat, pintu geser, dan teralis jendela berbagai model â€” kuat dan anti maling.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M14 6l-1-2H5v17h2v-7h5l1 2h7V6h-6zm4 8h-4l-1-2H7V6h5l1 2h5v6z"/></svg></div>
+      <h3>Konstruksi Baja Ringan</h3>
+      <p>Rangka atap baja ringan untuk rumah, ruko, dan gedung dengan standar SNI.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.05 15.96 0 13.5 0c-1.23 0-2.3.6-3 1.5-.7-.9-1.77-1.5-3-1.5C5.04 0 3 2.05 3 4.64c0 .48.11.92.18 1.36H1c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h19c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg></div>
+      <h3>Las Listrik & MIG</h3>
+      <p>Jasa las berbagai material: mild steel, stainless steel, aluminium, dan besi cor.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+      <h3>Fabrikasi Custom</h3>
+      <p>Produksi komponen baja custom sesuai gambar teknik untuk keperluan industri dan proyek khusus.</p>
+    </div>
+  </div>
+</section>
+
+<section id="keunggulan">
+  <div class="why-grid">
+    <div class="why-img">
+      <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80" alt="Tim Pengerjaan Las">
+      <div class="why-img-badge">
+        <div style="font-size:0.75rem;opacity:0.8">Proyek Tahun Ini</div>
+        <div style="font-size:1.5rem">240+ Proyek</div>
+      </div>
+    </div>
+    <div>
+      <span class="section-tag">Mengapa Kami</span>
+      <h2 class="section-title" style="text-align:left;margin-bottom:28px">Kami Tidak Hanya Las â€” Kami Membangun Kepercayaan</h2>
+      <ul class="why-list">
+        <li class="why-item">
+          <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><h4>Material Bersertifikat SNI</h4><p>Semua material yang kami gunakan telah memenuhi standar nasional Indonesia untuk keamanan konstruksi.</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><h4>Garansi Pengerjaan 1 Tahun</h4><p>Kami memberikan garansi penuh selama 12 bulan untuk setiap proyek yang kami selesaikan.</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><h4>Pengerjaan Tepat Waktu</h4><p>Kami menghargai waktu Anda. Kontrak pengerjaan disertai jadwal yang jelas dan tertulis.</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><h4>Konsultasi & Survey Gratis</h4><p>Tim kami siap melakukan survey lokasi dan konsultasi teknis tanpa biaya tambahan.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="galeri" class="gallery-bg">
+  <div class="section-header">
+    <span class="section-tag" style="background:rgba(212,80,10,0.2);border-color:rgba(212,80,10,0.4)">Galeri Proyek</span>
+    <h2 class="section-title">Hasil Kerja Kami</h2>
+    <p class="section-sub">Ratusan proyek telah kami selesaikan dengan standar kualitas terbaik.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gal-item wide">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=80" alt="Fabrikasi Baja">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=600&q=80" alt="Las Listrik">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80" alt="Pagar Besi">
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=80" alt="Kanopi">
+    </div>
+    <div class="gal-item wide">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" alt="Konstruksi">
+    </div>
+  </div>
+</section>
+
+<section id="penawaran" class="form-bg">
+  <div class="section-header">
+    <span class="section-tag">Penawaran</span>
+    <h2 class="section-title">Minta Penawaran Gratis</h2>
+    <p class="section-sub">Isi form berikut dan tim kami akan menghubungi Anda dalam 1x24 jam.</p>
+  </div>
+  <div class="form-wrap">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nama Lengkap</label>
+        <input type="text" id="las-nama" placeholder="Budi Santoso">
+      </div>
+      <div class="form-group">
+        <label>No. WhatsApp</label>
+        <input type="tel" id="las-wa" placeholder="0812 xxxx xxxx">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Jenis Pekerjaan</label>
+      <select id="las-jenis">
+        <option>Pilih jenis pekerjaan...</option>
+        <option>Kanopi & Atap Baja</option>
+        <option>Pagar & Railing</option>
+        <option>Pintu & Teralis</option>
+        <option>Konstruksi Baja Ringan</option>
+        <option>Las Custom / Fabrikasi</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Lokasi Proyek</label>
+      <input type="text" id="las-lokasi" placeholder="Jl. Merdeka No. 12, Jakarta Selatan">
+    </div>
+    <div class="form-group">
+      <label>Deskripsi Pekerjaan</label>
+      <textarea id="las-desc" rows="4" placeholder="Ceritakan kebutuhan Anda, misalnya: pagar besi hitam ukuran 10 meter dengan model minimalis..."></textarea>
+    </div>
+    <button class="btn-form" onclick="kirimPenawaran()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M5.077 16.9C3.77 15.167 3 13.013 3 10.5 3 4.701 7.701 0 13.5 0S24 4.701 24 10.5 19.299 21 13.5 21c-2.042 0-3.944-.576-5.55-1.575L2 21l1.077-4.1z"/></svg>
+      Kirim via WhatsApp
+    </button>
+  </div>
+</section>
+
+<footer>
+  <p>Â© 2024 CV Karya Logam Perkasa. Semua hak dilindungi. | Website dibuat oleh <a href="../index.html">LukmanHakim JasaWeb</a></p>
+</footer>
+
+<script>
+function kirimPenawaran() {
+  const nama = document.getElementById('las-nama').value || 'Calon Klien';
+  const jenis = document.getElementById('las-jenis').value;
+  const lokasi = document.getElementById('las-lokasi').value;
+  const desc = document.getElementById('las-desc').value;
+  const msg = `Halo CV Karya Logam Perkasa,
+
+Saya ${nama} ingin meminta penawaran:
+
+Jenis: ${jenis}
+Lokasi: ${lokasi}
+Deskripsi: ${desc}
+
+Mohon info lebih lanjut. Terima kasih.`;
+  window.open('https://wa.me/6285712225565?text=' + encodeURIComponent(msg), '_blank');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1069 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgenKu - Dashboard Agen Properti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sidebar-bg: #1a2332;
+            --sidebar-hover: #2a3447;
+            --sidebar-text: #94a3b8;
+            --sidebar-text-active: #ffffff;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-header svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary);
+        }
+
+        .sidebar-title {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 24px 16px;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            margin-bottom: 8px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background-color: var(--sidebar-hover);
+            color: var(--sidebar-text-active);
+        }
+
+        .nav-link.active {
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .nav-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .sidebar-footer {
+            padding: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .user-info {
+            flex-grow: 1;
+        }
+
+        .user-name {
+            color: #ffffff;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 1px solid var(--sidebar-text);
+            color: var(--sidebar-text);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 240px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            background-color: var(--card-bg);
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .date-display {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-top: 4px;
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 10px 16px 10px 40px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            width: 250px;
+            transition: border-color 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            fill: var(--text-muted);
+        }
+
+        .notification-bell {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .notification-bell svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-muted);
+            transition: fill 0.2s ease;
+        }
+
+        .notification-bell:hover svg {
+            fill: var(--text-main);
+        }
+
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background-color: var(--danger);
+            color: #ffffff;
+            font-size: 0.625rem;
+            font-weight: 700;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-area {
+            padding: 32px;
+            flex-grow: 1;
+        }
+        
+        .view-section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stat Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon.primary { background-color: rgba(59, 130, 246, 0.1); color: var(--primary); }
+        .stat-icon.success { background-color: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .stat-icon.warning { background-color: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        .stat-icon.purple { background-color: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+
+        .stat-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .stat-title {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .stat-trend {
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .trend-up { color: var(--success); }
+        .trend-neutral { color: var(--text-muted); }
+
+        /* Dashboard Layout Grid */
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .bar-chart {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+            padding-bottom: 32px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .bar-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar {
+            width: 100%;
+            max-width: 40px;
+            background: linear-gradient(180deg, var(--primary) 0%, rgba(59, 130, 246, 0.2) 100%);
+            border-radius: 6px 6px 0 0;
+            transition: height 1s ease-out;
+            height: 0;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -24px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Table Section */
+        .table-section {
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .prop-name {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .prop-location {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-aktif { background-color: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .status-terjual { background-color: rgba(59, 130, 246, 0.1); color: var(--primary); }
+        .status-pending { background-color: rgba(245, 158, 11, 0.1); color: var(--warning); }
+
+        .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-action {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .btn-action:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-wa {
+            border-color: #25D366;
+            color: #25D366;
+        }
+        
+        .btn-wa:hover {
+            background-color: #25D366;
+            color: white;
+        }
+
+        /* Notification Panel */
+        .notif-panel {
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .notif-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .notif-item {
+            display: flex;
+            gap: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .notif-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .notif-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .notif-icon svg { width: 20px; height: 20px; fill: currentColor; }
+
+        .notif-content h4 {
+            font-size: 0.875rem;
+            margin-bottom: 4px;
+        }
+
+        .notif-content p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .notif-time {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 24px 32px;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Listing View Extras */
+        .listing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm0 2.83l7 7V20h-2v-6h-2v-2H9v2H7v-2H5v-2H5.17l7-7z"/></svg>
+            <div class="sidebar-title">AgenKu</div>
+        </div>
+
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a class="nav-link active" data-target="dashboard">
+                    <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-target="listing">
+                    <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12zM10 9h8v2h-8zm0 3h4v2h-4zm0-6h8v2h-8z"/></svg>
+                    Listing Properti
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    Klien
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                    Komisi
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                    Laporan
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                    Notifikasi
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                    Pengaturan
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar">AA</div>
+                <div class="user-info">
+                    <div class="user-name">Ahmad Agen</div>
+                    <div class="user-role">Senior Agent</div>
+                </div>
+            </div>
+            <button class="logout-btn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+                Keluar
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                <div class="date-display" id="dateDisplay"></div>
+            </div>
+            <div class="topbar-actions">
+                <div class="search-box">
+                    <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    <input type="text" class="search-input" placeholder="Cari properti, klien...">
+                </div>
+                <div class="notification-bell">
+                    <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                    <div class="badge">3</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-area">
+            <!-- Dashboard View -->
+            <div id="view-dashboard" class="view-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Total Listing</div>
+                            <div class="stat-icon primary">
+                                <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12zM10 9h8v2h-8zm0 3h4v2h-4zm0-6h8v2h-8z"/></svg>
+                            </div>
+                        </div>
+                        <div class="stat-value">48 Properti</div>
+                        <div class="stat-trend trend-up">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                            +5 bulan ini
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Terjual Bulan Ini</div>
+                            <div class="stat-icon success">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                        </div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-trend trend-up">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                            +3 dari bulan lalu
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Komisi Bulan Ini</div>
+                            <div class="stat-icon warning">
+                                <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                            </div>
+                        </div>
+                        <div class="stat-value">Rp 47.5M</div>
+                        <div class="stat-trend trend-up">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                            Target tercapai
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Klien Baru</div>
+                            <div class="stat-icon purple">
+                                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                            </div>
+                        </div>
+                        <div class="stat-value">8</div>
+                        <div class="stat-trend trend-neutral">
+                            3 pending follow-up
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-layout">
+                    <div class="left-col">
+                        <div class="chart-section">
+                            <h3 class="section-title">Penjualan 6 Bulan Terakhir</h3>
+                            <div class="bar-chart">
+                                <div class="bar-wrapper"><div class="bar" style="--target-height: 40%;"></div><span class="bar-label">Jan</span></div>
+                                <div class="bar-wrapper"><div class="bar" style="--target-height: 65%;"></div><span class="bar-label">Feb</span></div>
+                                <div class="bar-wrapper"><div class="bar" style="--target-height: 50%;"></div><span class="bar-label">Mar</span></div>
+                                <div class="bar-wrapper"><div class="bar" style="--target-height: 80%;"></div><span class="bar-label">Apr</span></div>
+                                <div class="bar-wrapper"><div class="bar" style="--target-height: 45%;"></div><span class="bar-label">Mei</span></div>
+                                <div class="bar-wrapper"><div class="bar" style="--target-height: 90%;"></div><span class="bar-label">Jun</span></div>
+                            </div>
+                        </div>
+
+                        <div class="table-section">
+                            <div class="listing-header">
+                                <h3 class="section-title" style="margin-bottom:0;">Listing Terbaru</h3>
+                                <a href="#" class="btn-primary" onclick="document.querySelector('[data-target=\'listing\']').click(); return false;">Lihat Semua</a>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Properti</th>
+                                            <th>Harga</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="prop-name">Rumah 3KT Perumahan Griya Indah</div>
+                                                <div class="prop-location">Bekasi</div>
+                                            </td>
+                                            <td style="font-weight: 500;">Rp 850jt</td>
+                                            <td><span class="status-badge status-aktif">Aktif</span></td>
+                                            <td>
+                                                <div class="action-btns">
+                                                    <button class="btn-action">Edit</button>
+                                                    <a href="https://wa.me/6285712225565" target="_blank" class="btn-action btn-wa">WA</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="prop-name">Apartemen Studio Cityview</div>
+                                                <div class="prop-location">Jakarta Selatan</div>
+                                            </td>
+                                            <td style="font-weight: 500;">Rp 450jt</td>
+                                            <td><span class="status-badge status-aktif">Aktif</span></td>
+                                            <td>
+                                                <div class="action-btns">
+                                                    <button class="btn-action">Edit</button>
+                                                    <a href="https://wa.me/6285712225565" target="_blank" class="btn-action btn-wa">WA</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="prop-name">Ruko 2 Lantai Jl. Sudirman No. 15</div>
+                                                <div class="prop-location">Jakarta Pusat</div>
+                                            </td>
+                                            <td style="font-weight: 500;">Rp 1.2M</td>
+                                            <td><span class="status-badge status-terjual">Terjual</span></td>
+                                            <td>
+                                                <div class="action-btns">
+                                                    <button class="btn-action">Lihat</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="prop-name">Kavling 200m2 Depok Timur</div>
+                                                <div class="prop-location">Depok</div>
+                                            </td>
+                                            <td style="font-weight: 500;">Rp 320jt</td>
+                                            <td><span class="status-badge status-aktif">Aktif</span></td>
+                                            <td>
+                                                <div class="action-btns">
+                                                    <button class="btn-action">Edit</button>
+                                                    <a href="https://wa.me/6285712225565" target="_blank" class="btn-action btn-wa">WA</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="prop-name">Rumah Mewah 5KT Pondok Indah</div>
+                                                <div class="prop-location">Jakarta Selatan</div>
+                                            </td>
+                                            <td style="font-weight: 500;">Rp 4.5M</td>
+                                            <td><span class="status-badge status-pending">Pending</span></td>
+                                            <td>
+                                                <div class="action-btns">
+                                                    <button class="btn-action">Edit</button>
+                                                    <a href="https://wa.me/6285712225565" target="_blank" class="btn-action btn-wa">WA</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-col">
+                        <div class="notif-panel">
+                            <h3 class="section-title">Notifikasi Terbaru</h3>
+                            <div class="notif-list">
+                                <div class="notif-item">
+                                    <div class="notif-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
+                                        <svg viewBox="0 0 24 24"><path d="M21 11.11V7c0-2.76-2.24-5-5-5H8C5.24 2 3 4.24 3 7v10c0 2.76 2.24 5 5 5h4.89c.14 0 .28-.01.42-.03L21 21l-3.32-3.32c1.23-1.63 2.06-3.71 2.32-6.57zM8 7h8v2H8V7zm6 6H8v-2h6v2z"/></svg>
+                                    </div>
+                                    <div class="notif-content">
+                                        <h4>Inquiry Klien Baru</h4>
+                                        <p>Bpk Budi menanyakan Rumah Griya Indah</p>
+                                        <div class="notif-time">10 menit yang lalu</div>
+                                    </div>
+                                </div>
+                                <div class="notif-item">
+                                    <div class="notif-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);">
+                                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                                    </div>
+                                    <div class="notif-content">
+                                        <h4>Update Harga</h4>
+                                        <p>Waktunya review harga Apartemen Cityview</p>
+                                        <div class="notif-time">2 jam yang lalu</div>
+                                    </div>
+                                </div>
+                                <div class="notif-item">
+                                    <div class="notif-icon" style="background: rgba(59, 130, 246, 0.1); color: var(--primary);">
+                                        <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+                                    </div>
+                                    <div class="notif-content">
+                                        <h4>Jadwal Survey</h4>
+                                        <p>Survey Ruko Sudirman bersama Ibu Siska</p>
+                                        <div class="notif-time">Kemarin, 14:00</div>
+                                    </div>
+                                </div>
+                                <div class="notif-item">
+                                    <div class="notif-icon" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">
+                                        <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                                    </div>
+                                    <div class="notif-content">
+                                        <h4>Komisi Cair</h4>
+                                        <p>Komisi Ruko Sudirman telah masuk ke rekening</p>
+                                        <div class="notif-time">2 Hari yang lalu</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Listing View -->
+            <div id="view-listing" class="view-section">
+                <div class="table-section">
+                    <div class="listing-header">
+                        <h3 class="section-title" style="margin-bottom:0;">Semua Listing Properti</h3>
+                        <a href="#" class="btn-primary">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            Tambah Listing
+                        </a>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Properti</th>
+                                    <th>Harga</th>
+                                    <th>Tipe</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="color:var(--text-muted);font-size:0.875rem;">#PRP-001</td>
+                                    <td>
+                                        <div class="prop-name">Rumah 3KT Perumahan Griya Indah</div>
+                                        <div class="prop-location">Bekasi</div>
+                                    </td>
+                                    <td style="font-weight: 500;">Rp 850jt</td>
+                                    <td>Rumah</td>
+                                    <td><span class="status-badge status-aktif">Aktif</span></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-action">Edit</button>
+                                            <a href="https://wa.me/6285712225565" target="_blank" class="btn-action btn-wa">WA</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--text-muted);font-size:0.875rem;">#PRP-002</td>
+                                    <td>
+                                        <div class="prop-name">Apartemen Studio Cityview</div>
+                                        <div class="prop-location">Jakarta Selatan</div>
+                                    </td>
+                                    <td style="font-weight: 500;">Rp 450jt</td>
+                                    <td>Apartemen</td>
+                                    <td><span class="status-badge status-aktif">Aktif</span></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-action">Edit</button>
+                                            <a href="https://wa.me/6285712225565" target="_blank" class="btn-action btn-wa">WA</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--text-muted);font-size:0.875rem;">#PRP-003</td>
+                                    <td>
+                                        <div class="prop-name">Ruko 2 Lantai Jl. Sudirman No. 15</div>
+                                        <div class="prop-location">Jakarta Pusat</div>
+                                    </td>
+                                    <td style="font-weight: 500;">Rp 1.2M</td>
+                                    <td>Komersial</td>
+                                    <td><span class="status-badge status-terjual">Terjual</span></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-action">Lihat</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--text-muted);font-size:0.875rem;">#PRP-004</td>
+                                    <td>
+                                        <div class="prop-name">Kavling 200m2 Depok Timur</div>
+                                        <div class="prop-location">Depok</div>
+                                    </td>
+                                    <td style="font-weight: 500;">Rp 320jt</td>
+                                    <td>Tanah</td>
+                                    <td><span class="status-badge status-aktif">Aktif</span></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-action">Edit</button>
+                                            <a href="https://wa.me/6285712225565" target="_blank" class="btn-action btn-wa">WA</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--text-muted);font-size:0.875rem;">#PRP-005</td>
+                                    <td>
+                                        <div class="prop-name">Rumah Mewah 5KT Pondok Indah</div>
+                                        <div class="prop-location">Jakarta Selatan</div>
+                                    </td>
+                                    <td style="font-weight: 500;">Rp 4.5M</td>
+                                    <td>Rumah</td>
+                                    <td><span class="status-badge status-pending">Pending</span></td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn-action">Edit</button>
+                                            <a href="https://wa.me/6285712225565" target="_blank" class="btn-action btn-wa">WA</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <footer class="footer">
+            Dibuat oleh <a href="../index.html">LukmanHakim JasaWeb</a> &copy; 2026
+        </footer>
+    </main>
+
+    <script>
+        // Set Date
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('id-ID', dateOptions);
+
+        // Animate Bars on load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.bar').forEach(bar => {
+                    bar.style.height = bar.getAttribute('style').match(/--target-height:\s*([^;]+)/)[1];
+                });
+            }, 100);
+        });
+
+        // Navigation
+        const navLinks = document.querySelectorAll('.nav-link[data-target]');
+        const views = document.querySelectorAll('.view-section');
+        const pageTitle = document.getElementById('pageTitle');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Update active state
+                document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Update title
+                pageTitle.textContent = link.textContent.trim();
+                
+                // Show corresponding view
+                const targetId = link.getAttribute('data-target');
+                views.forEach(v => {
+                    v.classList.remove('active');
+                    if(v.id === 'view-' + targetId) {
+                        v.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
