@@ -370,9 +370,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-visual {
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 46%; /* Shifted from 50% to be higher */
   transform: translateY(-50%);
-  width: 500px;
+  width: 540px; /* Increased from 500px to make it even larger */
   padding-right: 80px;
   padding-left: 20px;
   display: flex;
@@ -567,12 +567,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-photo-wrap {
   position: relative;
   width: 100%;
-  max-width: 470px;
+  max-width: 500px; /* Increased from 470px to make the circle itself larger */
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: -30px auto 0; /* Negatif top margin to pull it slightly upwards */
+  margin: -65px auto 0; /* Negatif top margin to pull it even higher */
 }
 .hero-photo-circle {
   width: 82%;
@@ -589,7 +589,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%; /* Shifts the image slightly upwards to focus on face/torso */
+  object-position: center 15%; /* Shifts the image higher to show more face/body */
   display: block;
 }
 .hero-photo-ring {
