@@ -370,8 +370,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-visual {
   position: absolute;
   right: 0;
-  top: 40%; /* Lowered from 36% to adjust alignment */
-  transform: translateY(-45%);
+  top: 45%; /* Adjusted to match top alignment of 'Wujudkan Website' */
+  transform: translateY(-46%);
   width: 540px; /* Increased from 500px to make it even larger */
   padding-right: 80px;
   padding-left: 20px;
@@ -572,7 +572,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: -35px auto 0; /* Lowered from -65px to prevent it from going too high */
+  margin: 0 auto; /* Removed negative top margin for standard alignment */
 }
 .hero-photo-circle {
   width: 82%;
