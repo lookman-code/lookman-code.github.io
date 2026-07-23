@@ -1,5 +1,5 @@
 ﻿/* ===========================
-   Lookman Code â€“ script.js
+   LukmanWeb â€“ script.js
    =========================== */
 
 'use strict';
@@ -160,7 +160,7 @@ if (kontakForm) {
     }
 
     const text = encodeURIComponent(
-      `Halo Lookman Code! ðŸ‘‹\n\n` +
+      `Halo LukmanWeb! ðŸ‘‹\n\n` +
       `Nama: ${nama}\n` +
       `No. HP: ${hp}\n` +
       `Jenis Website: ${jenis}\n` +
@@ -226,6 +226,6 @@ document.querySelector('.nav-logo')?.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-console.log('%cðŸš€ Lookman Code', 'color: #c41220; font-size: 18px; font-weight: bold;');
+console.log('%cðŸš€ LukmanWeb', 'color: #c41220; font-size: 18px; font-weight: bold;');
 console.log('%cJasa Pembuatan Website Profesional | WA: 085712225565', 'color: #6b3a3d; font-size: 12px;');
 
