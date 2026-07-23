@@ -1,4 +1,4 @@
-﻿/* ===========================
+/* ===========================
    LukmanWeb â€“ script.js
    =========================== */
 
@@ -226,6 +226,15 @@ document.querySelector('.nav-logo')?.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-console.log('%cðŸš€ LukmanWeb', 'color: #c41220; font-size: 18px; font-weight: bold;');
+console.log('%c🚀 LukmanWeb', 'color: #c41220; font-size: 18px; font-weight: bold;');
 console.log('%cJasa Pembuatan Website Profesional | WA: 085712225565', 'color: #6b3a3d; font-size: 12px;');
+
+// ---- Meta Pixel Event Tracking for Meta Ads ----
+document.querySelectorAll('a[href*="wa.me"]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', { content_name: 'WhatsApp Contact' });
+    }
+  });
+});
 
